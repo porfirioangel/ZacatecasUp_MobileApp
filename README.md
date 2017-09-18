@@ -1,26 +1,41 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# ZacatecasUp
 
-## How to use this template
+Esta es la aplicación móvil de ZacatecasUp desarrollada con Ionic 3 y Angular 4.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+## Instrucciones:
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
-
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start mySideMenu sidemenu
+**Clonar proyecto:**
+```
+git clone https://gitlab.com/zacatecasup/ZacatecasUp_MobileApp.git
 ```
 
-Then, to run it, cd into `mySideMenu` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+**Instalar dependencias:**
+```
+npm install
 ```
 
-Substitute ios for android if not on a Mac.
+**Agregar plataformas:**
+```
+ionic cordova platform add android
+ionic cordova platform add ios
+```
 
+**Ejecutar en el navegador**
+```
+ionic serve
+```
+
+**Ejecutar en android en modo de compilación JIT:**
+```
+ionic cordova run android
+```
+
+**Ejecutar en android en modo de compilación AOR:**
+```
+ionic cordova run android --prod
+```
+
+**Ejecutar en android con livereload y mensajes de consola:**
+```
+ionic cordova run android -lcs
+```
