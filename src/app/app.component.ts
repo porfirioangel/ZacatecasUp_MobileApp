@@ -6,6 +6,8 @@ import {AlertController} from 'ionic-angular';
 
 import {HomePage} from '../pages/home/home';
 import {ListPage} from '../pages/list/list';
+import {CategoriasProvider} from "../providers/categorias/categorias";
+import {Categoria} from "../providers/categorias/categoria";
 
 @Component({
     templateUrl: 'app.html'
@@ -16,11 +18,13 @@ export class MyApp {
     rootPage: any = HomePage;
 
     pages: Array<{ title: string, component: any }>;
-    categorias: Array<{ nombre: string, icono: string }>;
+
+    categorias: Array<Categoria>;
 
     constructor(public platform: Platform, public statusBar: StatusBar,
                 public splashScreen: SplashScreen,
-                public alertCtrl: AlertController) {
+                public alertCtrl: AlertController,
+                public categoriasProvider: CategoriasProvider) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
@@ -29,27 +33,17 @@ export class MyApp {
             {title: 'List', component: ListPage}
         ];
 
-        this.categorias = [
-            {
-                nombre: 'Comida',
-                icono: 'restaurant'
-            }, {
-                nombre: 'Cafeterías',
-                icono: 'cafe'
-            }, {
-                nombre: 'Bares',
-                icono: 'beer'
-            }, {
-                nombre: 'Clubs Nocturnos',
-                icono: 'wine'
-            }, {
-                nombre: 'Turismo',
-                icono: 'map'
-            }, {
-                nombre: 'Servicios',
-                icono: 'hammer'
-            }
-        ];
+        this.loadCategorias();
+    }
+
+    loadCategorias() {
+        this.categoriasProvider.getCategorias()
+            .then(categorias => {
+                this.categorias = categorias;
+            })
+            .catch(error => {
+                console.log('home', error);
+            });
     }
 
     initializeApp() {
