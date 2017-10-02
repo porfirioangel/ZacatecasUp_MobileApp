@@ -31,7 +31,7 @@ export class HomePage {
     }
 
     searchByKeyword(keyword: string) {
-        this.navCtrl.setRoot(RecomendacionesPage);
+        this.navCtrl.setRoot(RecomendacionesPage, {hola: 'holamundo'});
     }
 
     onInputSearch() {

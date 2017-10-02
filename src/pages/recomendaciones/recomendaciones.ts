@@ -1,12 +1,7 @@
 import {Component} from '@angular/core';
-import {
-    IonicPage, LoadingController, NavController,
-    NavParams
-} from 'ionic-angular';
+import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 
-
-@IonicPage()
 @Component({
     selector: 'page-recomendaciones',
     templateUrl: 'recomendaciones.html',
@@ -24,7 +19,7 @@ export class RecomendacionesPage {
 
     presentLoading() {
         let loader = this.loadingCtrl.create({
-            content: "Please wait...",
+            content: "Please wait... " + this.navParams.get('hola'),
             duration: 3000
         });
         loader.present();

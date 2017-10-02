@@ -5,8 +5,6 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {AlertController} from 'ionic-angular';
 
 import {HomePage} from '../pages/home/home';
-import {CategoriasProvider} from "../providers/categorias/categorias";
-import {Categoria} from "../providers/categorias/categoria";
 
 @Component({
     templateUrl: 'app.html'
