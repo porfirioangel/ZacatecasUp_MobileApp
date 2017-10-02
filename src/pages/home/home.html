@@ -1,3 +1,21 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>Categorías</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button icon-left menuClose ion-item *ngFor="let c of categorias"
+                    (click)="showAlert(c)">
+                <ion-icon name="{{c.ionicon}}"></ion-icon>
+                {{c.nombre}}
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
@@ -7,8 +25,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding #content>
     <img src="assets/img/zacatecasup.jpeg" class="logo"/>
 
     <br/>
@@ -19,12 +36,12 @@
             <ion-input type="text"
                        (ionInput)="onInputSearch()"
                        [(ngModel)]="searchQuery"
-                        placeholder="comida, bares, etc."></ion-input>
+                       placeholder="comida, bares, etc."></ion-input>
         </ion-item>
     </ion-list>
 
     <button ion-button block (click)="searchByKeyword(searchQuery)"
-        [disabled]="!searchQuery">
+            [disabled]="!searchQuery">
         Buscar
     </button>
 

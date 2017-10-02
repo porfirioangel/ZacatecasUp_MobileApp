@@ -5,7 +5,6 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {AlertController} from 'ionic-angular';
 
 import {HomePage} from '../pages/home/home';
-import {ListPage} from '../pages/list/list';
 import {CategoriasProvider} from "../providers/categorias/categorias";
 import {Categoria} from "../providers/categorias/categoria";
 
@@ -17,33 +16,10 @@ export class MyApp {
 
     rootPage: any = HomePage;
 
-    pages: Array<{ title: string, component: any }>;
-
-    categorias: Array<Categoria>;
-
     constructor(public platform: Platform, public statusBar: StatusBar,
                 public splashScreen: SplashScreen,
-                public alertCtrl: AlertController,
-                public categoriasProvider: CategoriasProvider) {
+                public alertCtrl: AlertController) {
         this.initializeApp();
-
-        // used for an example of ngFor and navigation
-        this.pages = [
-            {title: 'Home', component: HomePage},
-            {title: 'List', component: ListPage}
-        ];
-
-        this.loadCategorias();
-    }
-
-    loadCategorias() {
-        this.categoriasProvider.getCategorias()
-            .then(categorias => {
-                this.categorias = categorias;
-            })
-            .catch(error => {
-                console.log('home', error);
-            });
     }
 
     initializeApp() {

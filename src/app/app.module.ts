@@ -4,19 +4,19 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
-import {ListPage} from '../pages/list/list';
+import {RecomendacionesPage} from '../pages/recomendaciones/recomendaciones';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {CategoriasProvider} from "../providers/categorias/categorias";
-import { HttpModule} from "@angular/http";
-import { GlobalVariablesProvider } from '../providers/global-variables/global-variables';
+import {HttpModule} from "@angular/http";
+import {GlobalVariablesProvider} from '../providers/global-variables/global-variables';
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
-        ListPage
+        RecomendacionesPage
     ],
     imports: [
         BrowserModule,
@@ -27,14 +27,14 @@ import { GlobalVariablesProvider } from '../providers/global-variables/global-va
     entryComponents: [
         MyApp,
         HomePage,
-        ListPage
+        RecomendacionesPage
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         CategoriasProvider,
-    GlobalVariablesProvider,
+        GlobalVariablesProvider,
     ]
 })
 export class AppModule {

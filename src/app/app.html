@@ -1,21 +1,21 @@
-<ion-menu [content]="content">
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Categorías</ion-title>
-        </ion-toolbar>
-    </ion-header>
+<!--<ion-menu [content]="content">-->
+    <!--<ion-header>-->
+        <!--<ion-toolbar>-->
+            <!--<ion-title>Categorías</ion-title>-->
+        <!--</ion-toolbar>-->
+    <!--</ion-header>-->
 
-    <ion-content>
-        <ion-list>
-            <button icon-left menuClose ion-item *ngFor="let c of categorias"
-                    (click)="showAlert(c)">
-                <ion-icon name="{{c.ionicon}}"></ion-icon>
-                {{c.nombre}}
-            </button>
-        </ion-list>
-    </ion-content>
-
-</ion-menu>
+    <!--<ion-content>-->
+        <!--<ion-list>-->
+            <!--<button icon-left menuClose ion-item *ngFor="let c of categorias"-->
+                    <!--(click)="showAlert(c)">-->
+                <!--<ion-icon name="{{c.ionicon}}"></ion-icon>-->
+                <!--{{c.nombre}}-->
+            <!--</button>-->
+        <!--</ion-list>-->
+    <!--</ion-content>-->
+<!--</ion-menu>-->
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<!--<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>-->
+<ion-nav [root]="rootPage"  swipeBackEnabled="false"></ion-nav>
