@@ -11,6 +11,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {CategoriasProvider} from "../providers/categorias/categorias";
 import {HttpModule} from "@angular/http";
 import {GlobalVariablesProvider} from '../providers/global-variables/global-variables';
+import { RecomendacionesProvider } from '../providers/recomendaciones/recomendaciones';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {GlobalVariablesProvider} from '../providers/global-variables/global-vari
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         CategoriasProvider,
         GlobalVariablesProvider,
+    RecomendacionesProvider,
     ]
 })
 export class AppModule {

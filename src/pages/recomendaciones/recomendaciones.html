@@ -10,5 +10,25 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-list>
+        <!--<ion-item *ngFor="let recomendacion of recomendaciones"-->
+                  <!--(click)="openRecomendacion(recomendacion)">-->
+            <!--<ion-avatar item-start>-->
+                <!--<img src="{{recomendacion.logotipo}}">-->
+            <!--</ion-avatar>-->
+            <!--<h2>{{recomendacion.nombre}}</h2>-->
+            <!--<p>{{recomendacion.descripcionBreve}}</p>-->
+        <!--</ion-item>-->
+        <button ion-item *ngFor="let recomendacion of recomendaciones"
+                (click)="openRecomendacion(recomendacion)">
+            <ion-avatar item-start>
+                <img src="{{recomendacion.logotipo}}">
+            </ion-avatar>
+            <h2>{{recomendacion.nombre}}</h2>
+            <p>{{recomendacion.calificacion}} estrellas</p>
+            <p text-wrap>{{recomendacion.descripcion_breve}}</p>
+            <p>4.2 km</p>
+        </button>
+    </ion-list>
 
 </ion-content>

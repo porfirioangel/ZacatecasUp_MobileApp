@@ -31,7 +31,9 @@ export class HomePage {
     }
 
     searchByKeyword(keyword: string) {
-        this.navCtrl.setRoot(RecomendacionesPage, {hola: 'holamundo'});
+        this.navCtrl.setRoot(RecomendacionesPage, {
+            searchQuery: this.searchQuery
+        });
     }
 
     onInputSearch() {
