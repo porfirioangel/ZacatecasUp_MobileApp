@@ -24,10 +24,6 @@ export class RecomendacionesPage {
         this.loadRecomendaciones();
     }
 
-    goBack() {
-        this.navCtrl.setRoot(HomePage);
-    }
-
     loadRecomendaciones() {
         let loader = this.loadingCtrl.create({
             content: 'Buscando recomendaciones'
@@ -48,7 +44,7 @@ export class RecomendacionesPage {
     }
 
     openRecomendacion(recomendacion: Recomendacion) {
-        this.navCtrl.setRoot(DetalleRecomendacionPage, {
+        this.navCtrl.push(DetalleRecomendacionPage, {
             id_negocio: recomendacion.id_negocio,
             searchQuery: this.searchQuery
         });
@@ -63,8 +59,6 @@ export class RecomendacionesPage {
     }
 
     loadDistances() {
-        let options = {enableHighAccuracy: true};
-
         this.geolocation.getCurrentPosition().then((resp) => {
             for (let recomendacion of this.recomendaciones) {
                 this.distancias.set(recomendacion,

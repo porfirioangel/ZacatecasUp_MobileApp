@@ -15,8 +15,7 @@ export class MyApp {
     rootPage: any = HomePage;
 
     constructor(public platform: Platform, public statusBar: StatusBar,
-                public splashScreen: SplashScreen,
-                public alertCtrl: AlertController) {
+                public splashScreen: SplashScreen) {
         this.initializeApp();
     }
 
