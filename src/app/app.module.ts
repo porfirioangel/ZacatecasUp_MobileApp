@@ -5,6 +5,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {RecomendacionesPage} from '../pages/recomendaciones/recomendaciones';
+import {DetalleRecomendacionPage} from '../pages/detalle-recomendacion/detalle-recomendacion';
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -19,6 +20,7 @@ import {IonRating} from '../components/ion-rating/ion-rating';
         MyApp,
         HomePage,
         RecomendacionesPage,
+        DetalleRecomendacionPage,
         IonRating
     ],
     imports: [
@@ -30,7 +32,8 @@ import {IonRating} from '../components/ion-rating/ion-rating';
     entryComponents: [
         MyApp,
         HomePage,
-        RecomendacionesPage
+        RecomendacionesPage,
+        DetalleRecomendacionPage
     ],
     providers: [
         StatusBar,

@@ -3,6 +3,7 @@ import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
+import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
 
 @Component({
     selector: 'page-recomendaciones',
@@ -43,7 +44,10 @@ export class RecomendacionesPage {
     }
 
     openRecomendacion(recomendacion: Recomendacion) {
-        console.log('openRecomendacion', recomendacion);
+        this.navCtrl.setRoot(DetalleRecomendacionPage, {
+            id_negocio: recomendacion.id_negocio,
+            searchQuery: this.searchQuery
+        });
     }
 
     /**
