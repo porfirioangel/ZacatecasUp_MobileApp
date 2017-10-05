@@ -11,13 +11,15 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {CategoriasProvider} from "../providers/categorias/categorias";
 import {HttpModule} from "@angular/http";
 import {GlobalVariablesProvider} from '../providers/global-variables/global-variables';
-import { RecomendacionesProvider } from '../providers/recomendaciones/recomendaciones';
+import {RecomendacionesProvider} from '../providers/recomendaciones/recomendaciones';
+import {IonRating} from '../components/ion-rating/ion-rating';
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
-        RecomendacionesPage
+        RecomendacionesPage,
+        IonRating
     ],
     imports: [
         BrowserModule,
@@ -36,7 +38,7 @@ import { RecomendacionesProvider } from '../providers/recomendaciones/recomendac
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         CategoriasProvider,
         GlobalVariablesProvider,
-    RecomendacionesProvider,
+        RecomendacionesProvider,
     ]
 })
 export class AppModule {

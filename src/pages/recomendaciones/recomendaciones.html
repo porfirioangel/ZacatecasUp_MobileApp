@@ -17,7 +17,13 @@
                 <img src="{{recomendacion.logotipo}}">
             </ion-avatar>
             <h2>{{recomendacion.nombre}}</h2>
-            <p>{{recomendacion.calificacion}} estrellas</p>
+            <div class="rating-container">
+                <ion-rating
+                    [numStars]="5"
+                    [readOnly]="true"
+                    [value]="recomendacion.calificacion">
+                </ion-rating>
+            </div>
             <p text-wrap>{{recomendacion.descripcion_breve}}</p>
             <p>4.2 km</p>
         </button>

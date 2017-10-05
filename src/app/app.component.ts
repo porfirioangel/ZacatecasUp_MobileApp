@@ -28,13 +28,4 @@ export class MyApp {
             this.splashScreen.hide();
         });
     }
-
-    showAlert(categoria) {
-        let alert = this.alertCtrl.create({
-            title: 'Categoría',
-            message: categoria.nombre,
-            buttons: ['OK']
-        });
-        alert.present();
-    }
 }

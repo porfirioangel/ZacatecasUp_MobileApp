@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
@@ -14,7 +14,8 @@ export class RecomendacionesPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public loadingCtrl: LoadingController,
-                public recomendacionesProvider: RecomendacionesProvider) {
+                public recomendacionesProvider: RecomendacionesProvider,
+                private cdRef: ChangeDetectorRef) {
         this.searchQuery = this.navParams.get('searchQuery');
         this.loadRecomendaciones();
     }
@@ -43,5 +44,13 @@ export class RecomendacionesPage {
 
     openRecomendacion(recomendacion: Recomendacion) {
         console.log('openRecomendacion', recomendacion);
+    }
+
+    /**
+     * Evita el error "ExpressionChangedAfterItHasBeenCheckedError" del
+     * componente ion-rating
+     */
+    ngAfterViewChecked() {
+        this.cdRef.detectChanges();
     }
 }

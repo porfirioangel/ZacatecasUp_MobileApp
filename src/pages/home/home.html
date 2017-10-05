@@ -8,7 +8,7 @@
     <ion-content>
         <ion-list>
             <button icon-left menuClose ion-item *ngFor="let c of categorias"
-                    (click)="showAlert(c)">
+                    (click)="searchByKeyword(c)">
                 <ion-icon name="{{c.ionicon}}"></ion-icon>
                 {{c.nombre}}
             </button>
