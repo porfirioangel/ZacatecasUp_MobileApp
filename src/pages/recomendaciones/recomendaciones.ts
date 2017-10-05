@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
-import {CategoriasProvider} from "../../providers/categorias/categorias";
 import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 
