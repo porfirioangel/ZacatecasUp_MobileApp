@@ -14,6 +14,8 @@ import {HttpModule} from "@angular/http";
 import {GlobalVariablesProvider} from '../providers/global-variables/global-variables';
 import {RecomendacionesProvider} from '../providers/recomendaciones/recomendaciones';
 import {IonRating} from '../components/ion-rating/ion-rating';
+import {Geolocation} from '@ionic-native/geolocation';
+
 
 @NgModule({
     declarations: [
@@ -42,6 +44,7 @@ import {IonRating} from '../components/ion-rating/ion-rating';
         CategoriasProvider,
         GlobalVariablesProvider,
         RecomendacionesProvider,
+        Geolocation,
     ]
 })
 export class AppModule {
