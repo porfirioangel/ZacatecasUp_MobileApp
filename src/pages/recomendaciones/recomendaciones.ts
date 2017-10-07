@@ -3,7 +3,6 @@ import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
-import {Geolocation} from '@ionic-native/geolocation';
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 
 @Component({
@@ -20,6 +19,9 @@ export class RecomendacionesPage {
                 public recomendacionesProvider: RecomendacionesProvider,
                 private cdRef: ChangeDetectorRef,
                 private devLocation: DevLocationProvider) {
+    }
+
+    ionViewDidLoad() {
         this.searchQuery = this.navParams.get('searchQuery');
         this.loadRecomendaciones();
     }
@@ -63,12 +65,12 @@ export class RecomendacionesPage {
         });
     }
 
-    /**
-     * Evita el error "ExpressionChangedAfterItHasBeenCheckedError" del
-     * componente ion-rating
-     */
-    ngAfterViewChecked() {
-        this.cdRef.detectChanges();
-    }
+    // /**
+    //  * Evita el error "ExpressionChangedAfterItHasBeenCheckedError" del
+    //  * componente ion-rating
+    //  */
+    // ngAfterViewChecked() {
+    //     this.cdRef.detectChanges();
+    // }
 
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleNegocio} from "../../providers/recomendaciones/detalle-negocio";
@@ -14,15 +14,11 @@ export class DetalleRecomendacionPage {
     private detalleNegocio: DetalleNegocio = new DetalleNegocio();
     private distancia: string = '';
 
-    private sliderOptions = {
-        pager: true,
-        autoHeight: true
-    };
-
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private recomendaciones: RecomendacionesProvider,
                 public toastProv: ToastProvider,
-                private devLocation: DevLocationProvider) {
+                private devLocation: DevLocationProvider,
+                private cdRef: ChangeDetectorRef) {
     }
 
     ionViewDidLoad() {
@@ -51,5 +47,12 @@ export class DetalleRecomendacionPage {
         this.toastProv.showToast('Se agregó calificación');
     }
 
+    // /**
+    //  * Evita el error "ExpressionChangedAfterItHasBeenCheckedError" del
+    //  * componente ion-rating
+    //  */
+    // ngAfterViewChecked() {
+    //     this.cdRef.detectChanges();
+    // }
 
 }
