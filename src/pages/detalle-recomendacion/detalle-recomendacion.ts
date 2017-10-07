@@ -4,6 +4,7 @@ import {RecomendacionesProvider} from "../../providers/recomendaciones/recomenda
 import {DetalleNegocio} from "../../providers/recomendaciones/detalle-negocio";
 import {ToastProvider} from "../../providers/toast/toast";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
+import {ComentariosNegocioPage} from "../comentarios-negocio/comentarios-negocio";
 
 @Component({
     selector: 'page-detalle-recomendacion',
@@ -63,6 +64,12 @@ export class DetalleRecomendacionPage {
             .catch(error => {
                 this.toastProv.showToast('No se agregó calificación');
             });
+    }
+
+    viewComments() {
+        this.navCtrl.push(ComentariosNegocioPage, {
+            comentarios: this.detalleNegocio.comentarios
+        });
     }
 
     // /**

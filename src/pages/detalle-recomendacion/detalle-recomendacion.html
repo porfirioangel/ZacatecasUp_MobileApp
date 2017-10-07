@@ -51,7 +51,8 @@
         </ion-slide>
     </ion-slides>
 
-    <button ion-button block icon-start>
+    <button ion-button block icon-start (click)="viewComments()"
+            [disabled]="detalleNegocio.comentarios?.length == 0">
         <ion-icon name="mail"></ion-icon>
         Comentarios ({{detalleNegocio.comentarios?.length || '0' }})
     </button>

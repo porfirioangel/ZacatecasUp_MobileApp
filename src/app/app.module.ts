@@ -15,8 +15,9 @@ import {GlobalVariablesProvider} from '../providers/global-variables/global-vari
 import {RecomendacionesProvider} from '../providers/recomendaciones/recomendaciones';
 import {IonRating} from '../components/ion-rating/ion-rating';
 import {Geolocation} from '@ionic-native/geolocation';
-import { ToastProvider } from '../providers/toast/toast';
-import { DevLocationProvider } from '../providers/dev-location/dev-location';
+import {ToastProvider} from '../providers/toast/toast';
+import {DevLocationProvider} from '../providers/dev-location/dev-location';
+import {ComentariosNegocioPage} from "../pages/comentarios-negocio/comentarios-negocio";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { DevLocationProvider } from '../providers/dev-location/dev-location';
         HomePage,
         RecomendacionesPage,
         DetalleRecomendacionPage,
+        ComentariosNegocioPage,
         IonRating
     ],
     imports: [
@@ -37,7 +39,8 @@ import { DevLocationProvider } from '../providers/dev-location/dev-location';
         MyApp,
         HomePage,
         RecomendacionesPage,
-        DetalleRecomendacionPage
+        DetalleRecomendacionPage,
+        ComentariosNegocioPage
     ],
     providers: [
         StatusBar,
@@ -47,8 +50,8 @@ import { DevLocationProvider } from '../providers/dev-location/dev-location';
         GlobalVariablesProvider,
         RecomendacionesProvider,
         Geolocation,
-    ToastProvider,
-    DevLocationProvider,
+        ToastProvider,
+        DevLocationProvider,
     ]
 })
 export class AppModule {
