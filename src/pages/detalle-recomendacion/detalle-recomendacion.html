@@ -7,25 +7,41 @@
 <ion-content padding>
     <h1 class="detalle-title">{{detalleNegocio.nombre}}</h1>
     <ion-grid>
-        <ion-row>
+        <ion-row class="vertical-align-content">
             <ion-col col-4>
                 <img src="{{detalleNegocio.logotipo}}">
             </ion-col>
 
             <ion-col col-8>
-                <ion-rating
-                    [numStars]="5"
-                    [readOnly]="false"
-                    [value]="detalleNegocio.calificacion"
-                    (clicked)="starClicked($event)">>
-                </ion-rating>
+                <div>
+                    <ion-rating
+                        [numStars]="5"
+                        [readOnly]="false"
+                        [value]="detalleNegocio.calificacion"
+                        (clicked)="starClicked($event)">>
+                    </ion-rating>
 
-                <p>{{detalleNegocio.categoria}}</p>
-                <p>{{distancia}}</p>
-                <p>{{detalleNegocio.sitio_web}}</p>
+                    <p>{{detalleNegocio.categoria}}</p>
+                    <p>{{distancia}}</p>
+                    <p>{{detalleNegocio.sitio_web}}</p>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
+
+    <div *ngFor="let caracteristica of descripcion">
+        <h2>{{caracteristica.titulo}}</h2>
+        <div *ngIf="caracteristica.tipo == 'lista'">
+            <ul>
+                <li *ngFor="let item of caracteristica.contenido">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="caracteristica.tipo == 'texto'">
+            <p>{{caracteristica.contenido}}</p>
+        </div>
+    </div>
 
     <h2>Galería</h2>
 
@@ -34,10 +50,6 @@
             <img src="{{imagen}}">
         </ion-slide>
     </ion-slides>
-
-    <h2>Descripción</h2>
-
-    <p>{{detalleNegocio.descripcion_completa}}</p>
 
     <button ion-button block icon-start>
         <ion-icon name="mail"></ion-icon>

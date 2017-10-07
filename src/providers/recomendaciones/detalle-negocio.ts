@@ -10,7 +10,7 @@ export class DetalleNegocio {
     longitud: number;
     galeria: string[];
     descripcion_breve: string;
-    descripcion_completa: string;
+    descripcion_completa: any;
     palabras_clave: string[];
     comentarios: Comentario[];
 }

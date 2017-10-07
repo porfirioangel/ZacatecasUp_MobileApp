@@ -13,6 +13,8 @@ export class DetalleRecomendacionPage {
     private id_negocio: number;
     private detalleNegocio: DetalleNegocio = new DetalleNegocio();
     private distancia: string = '';
+    private descripcionKeys: string[];
+    private descripcion: any = [];
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private recomendaciones: RecomendacionesProvider,
@@ -31,7 +33,7 @@ export class DetalleRecomendacionPage {
         this.recomendaciones.getDetalleNegocio(this.id_negocio)
             .then(detalleNegocio => {
                 this.detalleNegocio = detalleNegocio;
-
+                this.loadDescripcion();
                 return this.devLocation.getDistanceFromHere(
                     detalleNegocio.latitud, detalleNegocio.longitud);
             })
@@ -41,6 +43,14 @@ export class DetalleRecomendacionPage {
             .catch(error => {
                 console.log('detalle-recomendacion', error);
             });
+    }
+
+    loadDescripcion() {
+        let keys = Object.keys(this.detalleNegocio.descripcion_completa);
+
+        for (let key of keys) {
+            this.descripcion.push(this.detalleNegocio.descripcion_completa[key]);
+        }
     }
 
     starClicked() {

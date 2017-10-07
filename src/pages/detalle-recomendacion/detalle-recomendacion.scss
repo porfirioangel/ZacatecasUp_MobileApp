@@ -6,4 +6,15 @@ page-detalle-recomendacion {
     .detalle-title {
         margin-top: 10px;
     }
+
+    .vertical-align-content > * {
+        display: flex !important;
+        align-content: center !important;
+        align-items: center !important;
+    }
+
+    ul {
+        margin-top: 0;
+        padding-left: 1.2em;
+    }
 }
