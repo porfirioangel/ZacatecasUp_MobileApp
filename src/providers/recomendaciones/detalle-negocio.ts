@@ -3,6 +3,7 @@ import {Comentario} from "./comentario";
 export class DetalleNegocio {
     nombre: string;
     categoria: string;
+    logotipo: string;
     calificacion: number;
     sitio_web: string;
     latitud: number;

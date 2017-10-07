@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {RecomendacionesPage} from "../recomendaciones/recomendaciones";
+import {NavController, NavParams} from 'ionic-angular';
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleNegocio} from "../../providers/recomendaciones/detalle-negocio";
+import {ToastProvider} from "../../providers/toast/toast";
+import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 
 @Component({
     selector: 'page-detalle-recomendacion',
@@ -11,9 +12,17 @@ import {DetalleNegocio} from "../../providers/recomendaciones/detalle-negocio";
 export class DetalleRecomendacionPage {
     private id_negocio: number;
     private detalleNegocio: DetalleNegocio = new DetalleNegocio();
+    private distancia: string = '';
+
+    private sliderOptions = {
+        pager: true,
+        autoHeight: true
+    };
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-                private recomendaciones: RecomendacionesProvider) {
+                private recomendaciones: RecomendacionesProvider,
+                public toastProv: ToastProvider,
+                private devLocation: DevLocationProvider) {
     }
 
     ionViewDidLoad() {
@@ -26,9 +35,21 @@ export class DetalleRecomendacionPage {
         this.recomendaciones.getDetalleNegocio(this.id_negocio)
             .then(detalleNegocio => {
                 this.detalleNegocio = detalleNegocio;
+
+                return this.devLocation.getDistanceFromHere(
+                    detalleNegocio.latitud, detalleNegocio.longitud);
+            })
+            .then((distance) => {
+                this.distancia = distance;
             })
             .catch(error => {
                 console.log('detalle-recomendacion', error);
             });
     }
+
+    starClicked() {
+        this.toastProv.showToast('Se agregó calificación');
+    }
+
+
 }

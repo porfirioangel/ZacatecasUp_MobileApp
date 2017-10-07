@@ -5,5 +5,45 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>{{detalleNegocio.nombre}}</h1>
+    <h1 class="detalle-title">{{detalleNegocio.nombre}}</h1>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4>
+                <img src="{{detalleNegocio.logotipo}}">
+            </ion-col>
+
+            <ion-col col-8>
+                <ion-rating
+                    [numStars]="5"
+                    [readOnly]="false"
+                    [value]="detalleNegocio.calificacion"
+                    (clicked)="starClicked($event)">>
+                </ion-rating>
+
+                <p>{{detalleNegocio.categoria}}</p>
+                <p>{{distancia}}</p>
+                <p>{{detalleNegocio.sitio_web}}</p>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-12>
+                <h2>Galería</h2>
+
+                <ion-slides loop="true">
+                    <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
+                        <img src="{{imagen}}">
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <h2>Descripción</h2>
+    <p>{{detalleNegocio.descripcion_completa}}</p>
+
+    <button ion-button block icon-start>
+        <ion-icon name="star"></ion-icon>
+        Comentarios ()
+    </button>
 </ion-content>

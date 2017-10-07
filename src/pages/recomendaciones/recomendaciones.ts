@@ -1,10 +1,10 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
-import {HomePage} from "../home/home";
 import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
 import {Geolocation} from '@ionic-native/geolocation';
+import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 
 @Component({
     selector: 'page-recomendaciones',
@@ -19,9 +19,22 @@ export class RecomendacionesPage {
                 public loadingCtrl: LoadingController,
                 public recomendacionesProvider: RecomendacionesProvider,
                 private cdRef: ChangeDetectorRef,
-                private geolocation: Geolocation) {
+                private devLocation: DevLocationProvider) {
         this.searchQuery = this.navParams.get('searchQuery');
         this.loadRecomendaciones();
+    }
+
+    loadDistances() {
+        for (let recomendacion of this.recomendaciones) {
+            this.devLocation.getDistanceFromHere(recomendacion.latitud,
+                recomendacion.longitud)
+                .then((distance) => {
+                    this.distancias.set(recomendacion, distance);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }
 
     loadRecomendaciones() {
@@ -56,36 +69,6 @@ export class RecomendacionesPage {
      */
     ngAfterViewChecked() {
         this.cdRef.detectChanges();
-    }
-
-    loadDistances() {
-        this.geolocation.getCurrentPosition().then((resp) => {
-            for (let recomendacion of this.recomendaciones) {
-                this.distancias.set(recomendacion,
-                    this.calculateDistance(resp.coords.latitude,
-                        recomendacion.latitud,
-                        resp.coords.longitude,
-                        recomendacion.longitud));
-            }
-            resp.coords;
-        }).catch((error) => {
-            console.log('Error getting location', error);
-        });
-    }
-
-    calculateDistance(lat1: number, lat2: number, long1: number, long2: number) {
-        let p = 0.017453292519943295;    // Math.PI / 180
-        let c = Math.cos;
-        let a = 0.5 - c((lat1 - lat2) * p) / 2 + c(lat2 * p) *
-            c((lat1) * p) * (1 - c(((long1 - long2) * p))) / 2;
-        let dis = (12742 * Math.asin(Math.sqrt(a)));
-        let kmDistance = parseFloat(dis.toFixed(2));
-
-        if(kmDistance < 0.5) {
-            return (kmDistance * 1000) + ' m';
-        } else {
-            return kmDistance + ' km';
-        }
     }
 
 }

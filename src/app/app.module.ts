@@ -15,6 +15,8 @@ import {GlobalVariablesProvider} from '../providers/global-variables/global-vari
 import {RecomendacionesProvider} from '../providers/recomendaciones/recomendaciones';
 import {IonRating} from '../components/ion-rating/ion-rating';
 import {Geolocation} from '@ionic-native/geolocation';
+import { ToastProvider } from '../providers/toast/toast';
+import { DevLocationProvider } from '../providers/dev-location/dev-location';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import {Geolocation} from '@ionic-native/geolocation';
         GlobalVariablesProvider,
         RecomendacionesProvider,
         Geolocation,
+    ToastProvider,
+    DevLocationProvider,
     ]
 })
 export class AppModule {

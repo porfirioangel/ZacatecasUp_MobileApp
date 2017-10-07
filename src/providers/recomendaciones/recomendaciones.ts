@@ -36,6 +36,7 @@ export class RecomendacionesProvider {
                 .toPromise()
                 .then((response) => {
                     resolve(response.json() as DetalleNegocio);
+                    console.log(response)
                 })
                 .catch((error) => {
                     reject(error.json());
