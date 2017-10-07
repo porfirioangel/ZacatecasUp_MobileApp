@@ -25,25 +25,22 @@
                 <p>{{detalleNegocio.sitio_web}}</p>
             </ion-col>
         </ion-row>
-
-        <ion-row>
-            <ion-col col-12>
-                <h2>Galería</h2>
-
-                <ion-slides loop="true">
-                    <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
-                        <img src="{{imagen}}">
-                    </ion-slide>
-                </ion-slides>
-            </ion-col>
-        </ion-row>
     </ion-grid>
 
+    <h2>Galería</h2>
+
+    <ion-slides loop="true" style="height: auto;">
+        <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
+            <img src="{{imagen}}">
+        </ion-slide>
+    </ion-slides>
+
     <h2>Descripción</h2>
+
     <p>{{detalleNegocio.descripcion_completa}}</p>
 
     <button ion-button block icon-start>
-        <ion-icon name="star"></ion-icon>
-        Comentarios ()
+        <ion-icon name="mail"></ion-icon>
+        Comentarios (2)
     </button>
 </ion-content>
