@@ -44,7 +44,15 @@ export class DetalleRecomendacionPage {
     }
 
     starClicked() {
-        this.toastProv.showToast('Se agregó calificación');
+        this.recomendaciones.calificarNegocio(1, this.id_negocio,
+            this.detalleNegocio.calificacion)
+            .then((calificacion) => {
+                this.detalleNegocio.calificacion = calificacion.calificacion;
+                this.toastProv.showToast('Se agregó calificación');
+            })
+            .catch(error => {
+                this.toastProv.showToast('No se agregó calificación');
+            });
     }
 
     // /**

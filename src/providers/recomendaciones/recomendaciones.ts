@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import {GlobalVariablesProvider} from "../global-variables/global-variables";
 import {Recomendacion} from "./recomendacion";
 import {DetalleNegocio} from "./detalle-negocio";
+import {Calificacion} from "./calificacion";
 
 @Injectable()
 export class RecomendacionesProvider {
@@ -20,6 +21,7 @@ export class RecomendacionesProvider {
             this.http.get(url)
                 .toPromise()
                 .then((response) => {
+                    console.log('GET request', response.url);
                     resolve(response.json() as Recomendacion[]);
                 })
                 .catch((error) => {
@@ -35,7 +37,33 @@ export class RecomendacionesProvider {
             this.http.get(url)
                 .toPromise()
                 .then((response) => {
+                    console.log('GET request', response.url);
                     resolve(response.json() as DetalleNegocio);
+                })
+                .catch((error) => {
+                    reject(error.json());
+                });
+        });
+    }
+
+    calificarNegocio(id_usuario: number, id_negocio: number,
+                     calificacion: number): Promise<Calificacion> {
+        const url = this.globalVariables.host + '/calificar_negocio';
+
+        const params = {
+            params: {
+                id_usuario: id_usuario,
+                id_negocio: id_negocio,
+                calificacion: calificacion
+            }
+        };
+
+        return new Promise<Calificacion>((resolve, reject) => {
+            this.http.get(url, params)
+                .toPromise()
+                .then((response) => {
+                    console.log('GET request', response.url);
+                    resolve(response.json() as Calificacion);
                 })
                 .catch((error) => {
                     reject(error.json());

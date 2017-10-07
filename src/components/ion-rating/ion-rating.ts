@@ -37,6 +37,8 @@ export class IonRating {
     }
 
     starClicked(index) {
+        console.log('ion-rating', 'starClicked ' + index);
+
         if (!this.readOnly) {
             this.value = index + 1;
             this.clicked.emit(this.value);
@@ -44,6 +46,7 @@ export class IonRating {
     }
 
     ngOnChanges(changes: SimpleChanges) {
+        console.log('ion-rating', 'ngOnChanges');
         this.calc();
     }
 }
