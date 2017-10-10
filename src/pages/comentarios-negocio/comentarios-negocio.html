@@ -1,0 +1,39 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Comentarios</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <div ion-item *ngFor="let comentario of comentarios">
+            <ion-grid>
+                <ion-row class="vertical-align-content">
+                    <ion-col col-2>
+                        <img src="{{host + comentario.autor_foto}}">
+                    </ion-col>
+
+                    <ion-col col-10>
+                        <div>
+                            <p>{{comentario.fecha}}</p>
+                            <p><strong>{{comentario.autor}}</strong></p>
+                            <p text-wrap>{{comentario.comentario}}</p>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </ion-list>
+
+</ion-content>
+
+<ion-footer no-shadow class="footer-fixed">
+    <ion-toolbar position="bottom">
+        <button ion-button block (click)="viewComments()">
+            Agregar Comentario
+        </button>
+    </ion-toolbar>
+</ion-footer>

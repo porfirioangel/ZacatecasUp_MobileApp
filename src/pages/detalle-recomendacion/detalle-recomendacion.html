@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Detalle Recomendacion</ion-title>
+        <ion-title>Detalles</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -9,7 +9,7 @@
     <ion-grid>
         <ion-row class="vertical-align-content">
             <ion-col col-4>
-                <img src="{{detalleNegocio.logotipo}}">
+                <img src="{{host + detalleNegocio.logotipo}}">
             </ion-col>
 
             <ion-col col-8>
@@ -47,13 +47,17 @@
 
     <ion-slides loop="true" style="height: auto;">
         <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
-            <img src="{{imagen}}">
+            <img src="{{host + imagen}}">
         </ion-slide>
     </ion-slides>
-
-    <button ion-button block icon-start (click)="viewComments()"
-            [disabled]="detalleNegocio.comentarios?.length == 0">
-        <ion-icon name="mail"></ion-icon>
-        Comentarios ({{detalleNegocio.comentarios?.length || '0' }})
-    </button>
 </ion-content>
+
+<ion-footer no-shadow class="footer-fixed">
+    <ion-toolbar position="bottom">
+        <button ion-button block icon-start (click)="viewComments()"
+                [disabled]="detalleNegocio.comentarios?.length == 0">
+            <ion-icon name="mail"></ion-icon>
+            Comentarios ({{detalleNegocio.comentarios?.length || '0' }})
+        </button>
+    </ion-toolbar>
+</ion-footer>

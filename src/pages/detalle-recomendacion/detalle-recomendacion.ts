@@ -5,6 +5,7 @@ import {DetalleNegocio} from "../../providers/recomendaciones/detalle-negocio";
 import {ToastProvider} from "../../providers/toast/toast";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 import {ComentariosNegocioPage} from "../comentarios-negocio/comentarios-negocio";
+import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 
 @Component({
     selector: 'page-detalle-recomendacion',
@@ -16,17 +17,20 @@ export class DetalleRecomendacionPage {
     private distancia: string = '';
     private descripcionKeys: string[];
     private descripcion: any = [];
+    private host: string;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private recomendaciones: RecomendacionesProvider,
                 public toastProv: ToastProvider,
                 private devLocation: DevLocationProvider,
-                private cdRef: ChangeDetectorRef) {
+                private cdRef: ChangeDetectorRef,
+                private globalVariables: GlobalVariablesProvider) {
     }
 
     ionViewDidLoad() {
         this.id_negocio = this.navParams.get('id_negocio');
         console.log('Cargar negocio', this.id_negocio);
+        this.host = this.globalVariables.hostNoPort;
         this.getDetalleRecomendacion();
     }
 

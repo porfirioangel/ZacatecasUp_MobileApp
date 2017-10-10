@@ -9,7 +9,7 @@
         <button ion-item *ngFor="let recomendacion of recomendaciones"
                 (click)="openRecomendacion(recomendacion)">
             <ion-avatar item-start>
-                <img src="{{recomendacion.logotipo}}">
+                <img src="{{host + recomendacion.logotipo}}">
             </ion-avatar>
             <h2>{{recomendacion.nombre}}</h2>
             <div class="rating-container">

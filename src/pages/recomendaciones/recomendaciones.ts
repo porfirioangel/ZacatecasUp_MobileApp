@@ -4,12 +4,14 @@ import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
+import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 
 @Component({
     selector: 'page-recomendaciones',
     templateUrl: 'recomendaciones.html',
 })
 export class RecomendacionesPage {
+    private host: string;
     private recomendaciones: Array<Recomendacion>;
     private searchQuery: string;
     private distancias: Map<Recomendacion, string> = new Map();
@@ -18,11 +20,13 @@ export class RecomendacionesPage {
                 public loadingCtrl: LoadingController,
                 public recomendacionesProvider: RecomendacionesProvider,
                 private cdRef: ChangeDetectorRef,
-                private devLocation: DevLocationProvider) {
+                private devLocation: DevLocationProvider,
+                private globalVariables: GlobalVariablesProvider) {
     }
 
     ionViewDidLoad() {
         this.searchQuery = this.navParams.get('searchQuery');
+        this.host = this.globalVariables.hostNoPort;
         this.loadRecomendaciones();
     }
 
