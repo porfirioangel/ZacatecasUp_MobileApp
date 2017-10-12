@@ -18,6 +18,10 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {ToastProvider} from '../providers/toast/toast';
 import {DevLocationProvider} from '../providers/dev-location/dev-location';
 import {ComentariosNegocioPage} from "../pages/comentarios-negocio/comentarios-negocio";
+import {AddComentarioPage} from "../pages/add-comentario/add-comentario";
+import {TooltipsModule} from "ionic-tooltips";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PopoverValidacion} from "../components/popover-validacion/popover-validacion";
 
 
 @NgModule({
@@ -27,12 +31,16 @@ import {ComentariosNegocioPage} from "../pages/comentarios-negocio/comentarios-n
         RecomendacionesPage,
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
-        IonRating
+        AddComentarioPage,
+        IonRating,
+        PopoverValidacion
     ],
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
-        HttpModule
+        HttpModule,
+        TooltipsModule,
+        BrowserAnimationsModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -40,7 +48,9 @@ import {ComentariosNegocioPage} from "../pages/comentarios-negocio/comentarios-n
         HomePage,
         RecomendacionesPage,
         DetalleRecomendacionPage,
-        ComentariosNegocioPage
+        ComentariosNegocioPage,
+        AddComentarioPage,
+        PopoverValidacion
     ],
     providers: [
         StatusBar,

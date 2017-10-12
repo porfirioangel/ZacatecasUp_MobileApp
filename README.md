@@ -12,6 +12,8 @@ git clone https://gitlab.com/zacatecasup/ZacatecasUp_MobileApp.git
 **Instalar dependencias:**
 ```
 npm install
+npm install @angular/animations@4.1.3 --save --save-exact
+npm install ionic-tooltips --save
 ```
 
 **Agregar plataformas:**

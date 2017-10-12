@@ -1,7 +1,13 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {
+    ActionSheetController,
+    AlertController, ModalController, NavController,
+    NavParams
+} from 'ionic-angular';
 import {Comentario} from "../../providers/recomendaciones/comentario";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {HomePage} from "../home/home";
+import {AddComentarioPage} from "../add-comentario/add-comentario";
 
 @Component({
     selector: 'page-comentarios-negocio',
@@ -12,7 +18,8 @@ export class ComentariosNegocioPage {
     private host: string;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-                private globalVariables: GlobalVariablesProvider) {
+                private globalVariables: GlobalVariablesProvider,
+                public modalCtrl: ModalController) {
     }
 
     ionViewDidLoad() {
@@ -21,4 +28,8 @@ export class ComentariosNegocioPage {
         this.host = this.globalVariables.hostNoPort;
     }
 
+    presentModal() {
+        let modal = this.modalCtrl.create(AddComentarioPage);
+        modal.present();
+    }
 }

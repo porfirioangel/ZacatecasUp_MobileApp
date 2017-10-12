@@ -1,0 +1,18 @@
+<ion-content padding>
+    <h3>Agregar comentario</h3>
+    <textarea [(ngModel)]="comentario.comentario"></textarea>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button block color="danger" (click)="cancel()">
+                    Cancelar
+                </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button block (click)="addComentario()">
+                    Aceptar
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
