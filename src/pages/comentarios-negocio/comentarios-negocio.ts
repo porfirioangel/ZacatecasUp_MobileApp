@@ -20,16 +20,24 @@ export class ComentariosNegocioPage {
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 private globalVariables: GlobalVariablesProvider,
                 public modalCtrl: ModalController) {
-    }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad ComentariosNegocioPage');
         this.comentarios = this.navParams.get('comentarios');
         this.host = this.globalVariables.hostNoPort;
     }
 
+    returnToPageCallback = (params) => {
+        return new Promise((resolve, reject) => {
+            console.log('volví a ComentariosNegocioPage');
+            this.comentarios.push(params.comentario);
+            resolve();
+        });
+    };
+
     presentModal() {
-        let modal = this.modalCtrl.create(AddComentarioPage);
+        let modal = this.modalCtrl.create(AddComentarioPage, {
+            'comentarios': this.comentarios,
+            'returnCallback': this.returnToPageCallback
+        });
         modal.present();
     }
 }

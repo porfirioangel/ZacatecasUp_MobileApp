@@ -6,6 +6,7 @@ import {GlobalVariablesProvider} from "../global-variables/global-variables";
 import {Recomendacion} from "./recomendacion";
 import {DetalleNegocio} from "./detalle-negocio";
 import {Calificacion} from "./calificacion";
+import {Comentario} from "./comentario";
 
 @Injectable()
 export class RecomendacionesProvider {
@@ -69,6 +70,34 @@ export class RecomendacionesProvider {
                     reject(error.json());
                 });
         });
+    }
+
+    comentarNegocio(id_usuario: number, id_negocio: number,
+                    comentario: string): Promise<Comentario> {
+        const url = this.globalVariables.host + '/agregar_comentario';
+
+        const params = {
+            params: {
+                id_usuario: id_usuario,
+                id_negocio: id_negocio,
+                comentario: comentario
+            }
+        };
+
+        return new Promise<Comentario>((resolve, reject) => {
+            console.log(url);
+
+            this.http.get(url, params)
+                .toPromise()
+                .then((response) => {
+                    console.log('GET request', response.url);
+                    resolve(response.json() as Comentario);
+                })
+                .catch((error) => {
+                    console.log('ERROR GET request', error.url);
+                    reject(error.json());
+                });
+        })
     }
 
 }
