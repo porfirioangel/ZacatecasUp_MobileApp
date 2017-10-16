@@ -4,7 +4,7 @@ import {
     AlertController, ModalController, NavController,
     NavParams
 } from 'ionic-angular';
-import {Comentario} from "../../providers/recomendaciones/comentario";
+import {Comentario} from "../../models/comentario";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 import {HomePage} from "../home/home";
 import {AddComentarioPage} from "../add-comentario/add-comentario";

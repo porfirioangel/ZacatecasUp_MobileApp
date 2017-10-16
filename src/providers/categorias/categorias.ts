@@ -3,7 +3,7 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import {GlobalVariablesProvider} from "../global-variables/global-variables";
-import {Categoria} from "./categoria";
+import {Categoria} from "../../models/categoria";
 
 @Injectable()
 export class CategoriasProvider {

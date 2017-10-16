@@ -3,10 +3,10 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import {GlobalVariablesProvider} from "../global-variables/global-variables";
-import {Recomendacion} from "./recomendacion";
-import {DetalleNegocio} from "./detalle-negocio";
-import {Calificacion} from "./calificacion";
-import {Comentario} from "./comentario";
+import {Recomendacion} from "../../models/recomendacion";
+import {DetalleNegocio} from "../../models/detalle-negocio";
+import {Calificacion} from "../../models/calificacion";
+import {Comentario} from "../../models/comentario";
 
 @Injectable()
 export class RecomendacionesProvider {

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {RecomendacionesPage} from "../recomendaciones/recomendaciones";
-import {Categoria} from "../../providers/categorias/categoria";
+import {Categoria} from "../../models/categoria";
 import {CategoriasProvider} from "../../providers/categorias/categorias";
 
 @Component({

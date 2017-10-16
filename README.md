@@ -14,6 +14,8 @@ git clone https://gitlab.com/zacatecasup/ZacatecasUp_MobileApp.git
 npm install
 npm install @angular/animations@4.1.3 --save --save-exact
 npm install ionic-tooltips --save
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic/storage
 ```
 
 **Agregar plataformas:**

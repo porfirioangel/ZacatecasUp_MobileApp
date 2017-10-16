@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {IonicStorageModule} from '@ionic/storage';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
@@ -22,6 +23,8 @@ import {AddComentarioPage} from "../pages/add-comentario/add-comentario";
 import {TooltipsModule} from "ionic-tooltips";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PopoverValidacion} from "../components/popover-validacion/popover-validacion";
+import { AppStorageProvider } from '../providers/app-storage/app-storage';
+import { LoginProvider } from '../providers/login/login';
 
 
 @NgModule({
@@ -40,7 +43,11 @@ import {PopoverValidacion} from "../components/popover-validacion/popover-valida
         IonicModule.forRoot(MyApp),
         HttpModule,
         TooltipsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        IonicStorageModule.forRoot({
+            name: '__mydb',
+            driverOrder: ['indexeddb', 'sqlite', 'websql']
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -62,6 +69,8 @@ import {PopoverValidacion} from "../components/popover-validacion/popover-valida
         Geolocation,
         ToastProvider,
         DevLocationProvider,
+    AppStorageProvider,
+    LoginProvider,
     ]
 })
 export class AppModule {

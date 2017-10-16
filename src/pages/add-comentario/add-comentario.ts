@@ -3,7 +3,7 @@ import {
     IonicPage, NavController, NavParams,
     PopoverController
 } from 'ionic-angular';
-import {Comentario} from "../../providers/recomendaciones/comentario";
+import {Comentario} from "../../models/comentario";
 import {PopoverValidacion} from "../../components/popover-validacion/popover-validacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 

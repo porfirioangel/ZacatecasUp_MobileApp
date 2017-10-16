@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
-import {Recomendacion} from "../../providers/recomendaciones/recomendacion";
+import {Recomendacion} from "../../models/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";

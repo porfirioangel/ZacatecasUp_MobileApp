@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
-import {DetalleNegocio} from "../../providers/recomendaciones/detalle-negocio";
+import {DetalleNegocio} from "../../models/detalle-negocio";
 import {ToastProvider} from "../../providers/toast/toast";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 import {ComentariosNegocioPage} from "../comentarios-negocio/comentarios-negocio";
