@@ -23,8 +23,9 @@ import {AddComentarioPage} from "../pages/add-comentario/add-comentario";
 import {TooltipsModule} from "ionic-tooltips";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PopoverValidacion} from "../components/popover-validacion/popover-validacion";
-import { AppStorageProvider } from '../providers/app-storage/app-storage';
-import { LoginProvider } from '../providers/login/login';
+import {AppStorageProvider} from '../providers/app-storage/app-storage';
+import {LoginProvider} from '../providers/login/login';
+import {LoginPage} from "../pages/login/login";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { LoginProvider } from '../providers/login/login';
         ComentariosNegocioPage,
         AddComentarioPage,
         IonRating,
+        LoginPage,
         PopoverValidacion
     ],
     imports: [
@@ -57,7 +59,8 @@ import { LoginProvider } from '../providers/login/login';
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
         AddComentarioPage,
-        PopoverValidacion
+        PopoverValidacion,
+        LoginPage
     ],
     providers: [
         StatusBar,
@@ -69,8 +72,8 @@ import { LoginProvider } from '../providers/login/login';
         Geolocation,
         ToastProvider,
         DevLocationProvider,
-    AppStorageProvider,
-    LoginProvider,
+        AppStorageProvider,
+        LoginProvider,
     ]
 })
 export class AppModule {

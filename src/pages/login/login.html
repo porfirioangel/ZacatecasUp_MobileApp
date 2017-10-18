@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Iniciar Sesión</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="loginForm" (ngSubmit)="logForm()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Correo electrónico:</ion-label>
+                <ion-input formControlName="userEmail" type="text">
+                </ion-input>
+            </ion-item>
+
+            <div class="error-messages" *ngIf="getEmailErrors()">
+                <p *ngFor="let validation of getEmailErrors()">
+                    {{validation.message}}
+                </p>
+            </div>
+
+            <ion-item>
+                <ion-label floating>Contraseña:</ion-label>
+                <ion-input formControlName="userPassword" type="password">
+                </ion-input>
+            </ion-item>
+
+            <div class="error-messages" *ngIf="getPasswordErrors()">
+                <p *ngFor="let validation of getPasswordErrors()">
+                    {{validation.message}}
+                </p>
+            </div>
+        </ion-list>
+        <button ion-button type="submit" [disabled]="!loginForm.valid">
+            Iniciar Sesión
+        </button>
+    </form>
+</ion-content>
