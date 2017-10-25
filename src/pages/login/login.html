@@ -1,11 +1,13 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>Iniciar Sesión</ion-title>
-    </ion-navbar>
-</ion-header>
+<!--<ion-header>-->
+    <!--<ion-navbar>-->
+        <!--<ion-title>Iniciar Sesión</ion-title>-->
+    <!--</ion-navbar>-->
+<!--</ion-header>-->
 
 <ion-content padding>
-    <form [formGroup]="loginForm" (ngSubmit)="logForm()">
+    <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+        <h1>Iniciar Sesión</h1>
+
         <ion-list>
             <ion-item>
                 <ion-label floating>Correo electrónico:</ion-label>
@@ -29,6 +31,10 @@
                 <p *ngFor="let validation of getPasswordErrors()">
                     {{validation.message}}
                 </p>
+            </div>
+
+            <div class="error-messages" *ngIf="!loginCorrecto">
+                <p>Correo electrónico o contraseña incorrectos</p>
             </div>
         </ion-list>
         <button ion-button type="submit" [disabled]="!loginForm.valid">

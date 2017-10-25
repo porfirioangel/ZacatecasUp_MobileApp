@@ -30,17 +30,15 @@ export class ComentariosNegocioPage {
         this.host = this.globalVariables.hostNoPort;
     }
 
-    returnToPageCallback = (params) => {
-        return new Promise((resolve, reject) => {
-            console.log('volví a ComentariosNegocioPage');
-            this.comentarios.push(params.comentario);
-            resolve();
-        });
-    };
-
     openNewCommentModal() {
         let email = null;
         let password = null;
+
+        let commentModal = this.modalCtrl.create(AddComentarioPage,
+            {
+                'comentarios': this.comentarios,
+                'onCommentAdded': this.onCommentAdded
+            });
 
         this.appStorage.getLoginEmail()
             .then((loginEmail) => {
@@ -59,14 +57,36 @@ export class ComentariosNegocioPage {
                 let commentModal = this.modalCtrl.create(AddComentarioPage,
                     {
                         'comentarios': this.comentarios,
-                        'returnCallback': this.returnToPageCallback
+                        'onCommentAdded': this.onCommentAdded
                     });
 
                 commentModal.present();
             })
             .catch((error) => {
                 console.log(error);
-                this.navCtrl.push(LoginPage);
+
+                this.navCtrl.push(LoginPage, {
+                    'onUserLogged': this.onUserLogged
+                });
             });
     }
+
+    onCommentAdded = (params) => {
+        return new Promise((resolve, reject) => {
+            console.log('volví a ComentariosNegocioPage');
+            this.comentarios.push(params.comentario);
+            resolve();
+        });
+    };
+
+    onUserLogged = (params) => {
+        return new Promise((resolve, reject) => {
+            console.log('El usuario ya se logueó');
+            this.appStorage.saveLoginData(params.email, params.password);
+            this.globalVariables.email = params.email;
+            this.globalVariables.password = params.password;
+            this.globalVariables.id_usuario = params.id_usuario;
+            resolve('Login exitoso');
+        });
+    };
 }

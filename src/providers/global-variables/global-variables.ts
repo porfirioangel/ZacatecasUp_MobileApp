@@ -4,6 +4,9 @@ import {Injectable} from '@angular/core';
 export class GlobalVariablesProvider {
     public host: string = 'http://localhost:3000';
     public hostNoPort = 'http://localhost';
+    public id_usuario: number;
+    public email: string;
+    public password: string;
 
     constructor() {
         console.log('Hello GlobalVariablesProvider Provider');

@@ -6,12 +6,18 @@ import {
     Validators,
     AbstractControl, FormControl
 } from '@angular/forms';
+import {LoginProvider} from "../../providers/login/login";
+import {ToastProvider} from "../../providers/toast/toast";
 
 @Component({
     selector: 'page-login',
     templateUrl: 'login.html',
 })
 export class LoginPage {
+    private loginForm: FormGroup;
+    private loginCorrecto: boolean;
+    private userId: number;
+
     private valMessages = {
         'userEmail': [
             {
@@ -27,33 +33,46 @@ export class LoginPage {
             {
                 type: 'required',
                 message: 'La contraseña es obligatoria'
-            },
-            // {
-            //     type: 'minlength',
-            //     message: 'La contraseña debe contener mínimo 6 caracteres'
-            // }
+            }
         ]
     };
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-                private formBuilder: FormBuilder) {
+                private formBuilder: FormBuilder,
+                private login: LoginProvider,
+                private toast: ToastProvider) {
+
         this.loginForm = this.formBuilder.group({
-            'userEmail': new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.email
-            ])),
-            'userPassword': new FormControl('', Validators.compose([
-                Validators.required,
-                Validators.minLength(6)
-            ]))
+            'userEmail': new FormControl('porfirioads@gmail.com',
+                Validators.compose([
+                    Validators.required,
+                    Validators.email
+                ])),
+            'userPassword': new FormControl('holamundo',
+                Validators.compose([
+                    Validators.required,
+                    Validators.minLength(6)
+                ]))
         });
+
+        this.loginCorrecto = true;
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
     }
 
-    private loginForm: FormGroup;
+    ionViewWillLeave() {
+        console.log('ionViewWillLeave LoginPage');
+
+        let onUserLogged = this.navParams.get('onUserLogged');
+
+        onUserLogged({
+            email: this.loginForm.get('userEmail').value,
+            password: this.loginForm.get('userPassword').value,
+            user_id: this.userId
+        });
+    }
 
     getEmailErrors() {
         return this.getFieldErrors(this.valMessages.userEmail, 'userEmail');
@@ -77,7 +96,21 @@ export class LoginPage {
         return fieldErrors;
     }
 
-    logForm() {
-        console.log(this.loginForm.value)
+    doLogin() {
+        let email = this.loginForm.get('userEmail').value;
+        let password = this.loginForm.get('userPassword').value;
+
+        this.login.checkLogin(email, password)
+            .then((user_id) => {
+                console.log('Login correcto', user_id);
+                this.loginCorrecto = true;
+                this.userId = user_id;
+                this.navCtrl.pop();
+                console.log('login poped');
+            })
+            .catch((error) => {
+                console.log('Error', error);
+                this.loginCorrecto = false;
+            });
     }
 }

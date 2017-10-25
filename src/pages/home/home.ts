@@ -4,6 +4,7 @@ import {AlertController} from 'ionic-angular';
 import {RecomendacionesPage} from "../recomendaciones/recomendaciones";
 import {Categoria} from "../../models/categoria";
 import {CategoriasProvider} from "../../providers/categorias/categorias";
+import {AppStorageProvider} from "../../providers/app-storage/app-storage";
 
 @Component({
     selector: 'page-home',
@@ -16,7 +17,8 @@ export class HomePage {
 
     constructor(public navCtrl: NavController,
                 public alertCtrl: AlertController,
-                public categoriasProvider: CategoriasProvider) {
+                public categoriasProvider: CategoriasProvider,
+                private appStorage: AppStorageProvider) {
         this.loadCategorias();
     }
 
@@ -38,5 +40,9 @@ export class HomePage {
 
     onInputSearch() {
         this.canSearch = this.searchQuery.length > 0;
+    }
+
+    clearData() {
+        this.appStorage.deleteLoginData();
     }
 }

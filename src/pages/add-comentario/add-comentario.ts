@@ -1,8 +1,5 @@
 import {Component} from '@angular/core';
-import {
-    IonicPage, NavController, NavParams,
-    PopoverController
-} from 'ionic-angular';
+import {NavController, NavParams, PopoverController} from 'ionic-angular';
 import {Comentario} from "../../models/comentario";
 import {PopoverValidacion} from "../../components/popover-validacion/popover-validacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
@@ -25,8 +22,8 @@ export class AddComentarioPage {
 
     ionViewWillLeave() {
         console.log('ionViewWillLeave AddComentarioPage');
-        let returnCallback = this.navParams.get('returnCallback');
-        returnCallback({'comentario': this.comentario});
+        let onCommentAdded = this.navParams.get('onCommentAdded');
+        onCommentAdded({'comentario': this.comentario});
     }
 
     addComentario() {
