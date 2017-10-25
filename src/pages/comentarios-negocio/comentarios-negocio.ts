@@ -74,6 +74,7 @@ export class ComentariosNegocioPage {
     onCommentAdded = (params) => {
         return new Promise((resolve, reject) => {
             console.log('volví a ComentariosNegocioPage');
+            console.log('Comentario', params.comentario);
             this.comentarios.push(params.comentario);
             resolve();
         });

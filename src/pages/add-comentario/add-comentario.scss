@@ -17,15 +17,11 @@ page-add-comentario {
     textarea {
         width: 100%;
         resize: none;
-        height: 50%;
+        height: 70px;
     }
-
-    ion-grid {
-        height: 10%;
-    }
-
-    .input-invalida {
-        border: solid red 1px
-    }
+    //
+    //ion-grid {
+    //    height: 10%;
+    //}
 
 }
