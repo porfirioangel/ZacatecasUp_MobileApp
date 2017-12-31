@@ -37,3 +37,5 @@ UserInterfaceState.xcuserstate
 /resources/**
 !/resources/icon.png
 !/resources/splash.png
+
+src/providers/global-variables/server.ts
