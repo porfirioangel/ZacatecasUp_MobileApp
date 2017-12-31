@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
+import {Server} from "./server";
 
 @Injectable()
 export class GlobalVariablesProvider {
-    public host: string = 'http://localhost:8000/api';
-    public hostNoPort = 'http://localhost';
+    public host: string = Server.apiUrl;
+    public hostNoPort = Server.hostUrl;
     public id_usuario: number;
     public email: string;
     public password: string;
