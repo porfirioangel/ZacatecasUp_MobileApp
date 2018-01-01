@@ -8,6 +8,7 @@ import {DetalleNegocio} from "../../models/detalle-negocio";
 import {Calificacion} from "../../models/calificacion";
 import {Comentario} from "../../models/comentario";
 
+
 @Injectable()
 export class RecomendacionesProvider {
 
@@ -18,8 +19,16 @@ export class RecomendacionesProvider {
     getRecomendaciones(busqueda: string): Promise<Recomendacion[]> {
         const url = this.globalVariables.host + '/buscar_recomendaciones';
 
+        console.log('busqueda', busqueda);
+
+        const params = {
+            params: {
+                palabras_clave: busqueda
+            }
+        };
+
         return new Promise<Recomendacion[]>((resolve, reject) => {
-            this.http.get(url)
+            this.http.get(url, params)
                 .toPromise()
                 .then((response) => {
                     console.log('GET request', response.url);
@@ -34,8 +43,14 @@ export class RecomendacionesProvider {
     getDetalleNegocio(id_negocio: number): Promise<DetalleNegocio> {
         const url = this.globalVariables.host + '/detalles_negocio';
 
+        const params = {
+            params: {
+                id_negocio: id_negocio
+            }
+        };
+
         return new Promise<DetalleNegocio>((resolve, reject) => {
-            this.http.get(url)
+            this.http.get(url, params)
                 .toPromise()
                 .then((response) => {
                     console.log('GET request', response.url);
@@ -52,21 +67,20 @@ export class RecomendacionesProvider {
         const url = this.globalVariables.host + '/calificar_negocio';
 
         const params = {
-            params: {
-                id_usuario: id_usuario,
-                id_negocio: id_negocio,
-                calificacion: calificacion
-            }
+            id_usuario: id_usuario,
+            id_negocio: id_negocio,
+            calificacion: calificacion
         };
 
         return new Promise<Calificacion>((resolve, reject) => {
-            this.http.get(url, params)
+            this.http.post(url, params)
                 .toPromise()
                 .then((response) => {
-                    console.log('GET request', response.url);
+                    console.log('POST request', response.url);
                     resolve(response.json() as Calificacion);
                 })
                 .catch((error) => {
+                    console.log('POST request error', error);
                     reject(error.json());
                 });
         });

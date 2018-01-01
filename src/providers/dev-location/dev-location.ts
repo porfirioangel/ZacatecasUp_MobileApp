@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Geolocation} from '@ionic-native/geolocation';
-import {Categoria} from "../../models/categoria";
 import {Position} from "../../models/position";
 
 @Injectable()

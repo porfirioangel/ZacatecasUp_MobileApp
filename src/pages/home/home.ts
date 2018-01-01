@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {AlertController} from 'ionic-angular';
 import {RecomendacionesPage} from "../recomendaciones/recomendaciones";
-import {Categoria} from "../../models/categoria";
 import {CategoriasProvider} from "../../providers/categorias/categorias";
 import {AppStorageProvider} from "../../providers/app-storage/app-storage";
 
@@ -11,12 +9,11 @@ import {AppStorageProvider} from "../../providers/app-storage/app-storage";
     templateUrl: 'home.html'
 })
 export class HomePage {
-    categorias: Array<Categoria>;
+    categorias: Array<string>;
     canSearch: boolean = false;
     searchQuery: string = '';
 
     constructor(public navCtrl: NavController,
-                public alertCtrl: AlertController,
                 public categoriasProvider: CategoriasProvider,
                 private appStorage: AppStorageProvider) {
         this.loadCategorias();
@@ -34,7 +31,7 @@ export class HomePage {
 
     searchByKeyword(keyword: string) {
         this.navCtrl.push(RecomendacionesPage, {
-            searchQuery: this.searchQuery
+            searchQuery: keyword
         });
     }
 

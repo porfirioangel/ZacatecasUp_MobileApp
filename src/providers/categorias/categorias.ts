@@ -3,7 +3,6 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import {GlobalVariablesProvider} from "../global-variables/global-variables";
-import {Categoria} from "../../models/categoria";
 
 @Injectable()
 export class CategoriasProvider {
@@ -11,14 +10,14 @@ export class CategoriasProvider {
                 private globalVariables: GlobalVariablesProvider) {
     }
 
-    getCategorias(): Promise<Categoria[]> {
+    getCategorias(): Promise<string[]> {
         const url = this.globalVariables.host + '/obtener_categorias';
 
-        return new Promise<Categoria[]>((resolve, reject) => {
+        return new Promise<string[]>((resolve, reject) => {
             this.http.get(url)
                 .toPromise()
                 .then((response) => {
-                    resolve(response.json() as Categoria[]);
+                    resolve(response.json() as string[]);
                 })
                 .catch((error) => {
                     reject(error.json());
