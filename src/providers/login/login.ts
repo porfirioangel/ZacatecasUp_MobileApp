@@ -2,26 +2,58 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {GlobalVariablesProvider} from "../global-variables/global-variables";
+import {AppStorageProvider} from "../app-storage/app-storage";
+import {Usuario} from "../../models/usuario";
 
 @Injectable()
 export class LoginProvider {
+    public userLogged: boolean = false;
 
     constructor(public http: Http,
-                private globalVariables: GlobalVariablesProvider) {
+                private globalVariables: GlobalVariablesProvider,
+                private appStorage: AppStorageProvider) {
+
         console.log('Hello LoginProvider Provider');
     }
 
-    public checkLogin(email: string, password: string): Promise<number> {
+    public loginWithSavedUser(): Promise<Usuario> {
+        let email = '';
+        let password = '';
+
+        return this.appStorage.getLoginEmail()
+            .then((loginEmail) => {
+                console.log('hay email guardado: ' + loginEmail);
+                email = loginEmail;
+                return this.appStorage.getLoginPassword()
+            })
+            .then((loginPasword) => {
+                console.log('hay password guardado: ' + loginPasword);
+                password = loginPasword;
+                return this.loginWithCredentials(email, password);
+            }).catch(error => {
+                this.userLogged = false;
+            });
+    }
+
+    public loginWithCredentials(email: string, password: string): Promise<Usuario> {
         const url = this.globalVariables.host + '/login';
 
-        return new Promise<number>((resolve, reject) => {
-            this.http.get(url)
+        const params = {
+            email: email,
+            password: password,
+        };
+
+        return new Promise<Usuario>((resolve, reject) => {
+            this.http.post(url, params)
                 .toPromise()
                 .then((response) => {
-                    console.log('GET request', response.url);
-                    resolve(response.json() as number);
+                    console.log('POST request', response.url);
+                    this.userLogged = true;
+                    resolve(response.json() as Usuario);
                 })
                 .catch((error) => {
+                    console.log('POST request error', error);
+                    this.userLogged = false;
                     reject(error.json());
                 });
         });

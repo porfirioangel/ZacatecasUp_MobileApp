@@ -1,9 +1,7 @@
 <ion-header>
-
     <ion-navbar>
         <ion-title>Comentarios</ion-title>
     </ion-navbar>
-
 </ion-header>
 
 
@@ -26,14 +24,25 @@
                 </ion-row>
             </ion-grid>
         </div>
+
     </ion-list>
 
 </ion-content>
 
 <ion-footer no-shadow class="footer-fixed">
     <ion-toolbar position="bottom">
-        <button ion-button block (click)="openNewCommentModal()">
-            Agregar Comentario
-        </button>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-9>
+                    <ion-input type="text"
+                               placeholder="Escribe tu comentario"></ion-input>
+                </ion-col>
+                <ion-col col-3>
+                    <button ion-button block>
+                        Enviar
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-toolbar>
 </ion-footer>

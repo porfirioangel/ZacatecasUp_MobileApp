@@ -8,6 +8,9 @@ import {
 } from '@angular/forms';
 import {LoginProvider} from "../../providers/login/login";
 import {ToastProvider} from "../../providers/toast/toast";
+import {Usuario} from "../../models/usuario";
+import {AppStorageProvider} from "../../providers/app-storage/app-storage";
+import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 
 @Component({
     selector: 'page-login',
@@ -16,7 +19,6 @@ import {ToastProvider} from "../../providers/toast/toast";
 export class LoginPage {
     private loginForm: FormGroup;
     private loginCorrecto: boolean;
-    private userId: number;
 
     private valMessages = {
         'userEmail': [
@@ -37,10 +39,11 @@ export class LoginPage {
         ]
     };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,
+    constructor(public navCtrl: NavController,
                 private formBuilder: FormBuilder,
                 private login: LoginProvider,
-                private toast: ToastProvider) {
+                private appStorage: AppStorageProvider,
+                private globalVariables: GlobalVariablesProvider) {
 
         this.loginForm = this.formBuilder.group({
             'userEmail': new FormControl('porfirioads@gmail.com',
@@ -56,22 +59,6 @@ export class LoginPage {
         });
 
         this.loginCorrecto = true;
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad LoginPage');
-    }
-
-    ionViewWillLeave() {
-        console.log('ionViewWillLeave LoginPage');
-
-        let onUserLogged = this.navParams.get('onUserLogged');
-
-        onUserLogged({
-            email: this.loginForm.get('userEmail').value,
-            password: this.loginForm.get('userPassword').value,
-            user_id: this.userId
-        });
     }
 
     getEmailErrors() {
@@ -100,17 +87,22 @@ export class LoginPage {
         let email = this.loginForm.get('userEmail').value;
         let password = this.loginForm.get('userPassword').value;
 
-        this.login.checkLogin(email, password)
-            .then((user_id) => {
-                console.log('Login correcto', user_id);
+        this.login.loginWithCredentials(email, password)
+            .then((usuario) => {
                 this.loginCorrecto = true;
-                this.userId = user_id;
+                this.saveLoginCredentials(usuario.id_usuario, email, password);
                 this.navCtrl.pop();
-                console.log('login poped');
             })
             .catch((error) => {
-                console.log('Error', error);
                 this.loginCorrecto = false;
             });
+    }
+
+    private saveLoginCredentials(id_usuario: number, email: string,
+                                 password: string) {
+        this.appStorage.saveLoginData(email, password);
+        this.globalVariables.email = email;
+        this.globalVariables.password = password;
+        this.globalVariables.id_usuario = id_usuario;
     }
 }

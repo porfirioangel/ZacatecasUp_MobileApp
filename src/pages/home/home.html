@@ -7,7 +7,12 @@
 
     <ion-content>
         <ion-list>
-            <button icon-left menuClose ion-item *ngFor="let c of categorias"
+            <button menuClose ion-item (click)="openLoginPage()"
+                    *ngIf="!login.userLogged">
+                <ion-icon name="log-in"></ion-icon>
+                Iniciar Sesión
+            </button>
+            <button menuClose ion-item *ngFor="let c of categorias"
                     (click)="searchByKeyword(c)">
                 <ion-icon name="send"></ion-icon>
                 {{c}}

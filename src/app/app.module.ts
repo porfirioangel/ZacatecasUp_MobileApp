@@ -19,10 +19,8 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {ToastProvider} from '../providers/toast/toast';
 import {DevLocationProvider} from '../providers/dev-location/dev-location';
 import {ComentariosNegocioPage} from "../pages/comentarios-negocio/comentarios-negocio";
-import {AddComentarioPage} from "../pages/add-comentario/add-comentario";
 import {TooltipsModule} from "ionic-tooltips";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {PopoverValidacion} from "../components/popover-validacion/popover-validacion";
 import {AppStorageProvider} from '../providers/app-storage/app-storage';
 import {LoginProvider} from '../providers/login/login';
 import {LoginPage} from "../pages/login/login";
@@ -35,10 +33,8 @@ import {LoginPage} from "../pages/login/login";
         RecomendacionesPage,
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
-        AddComentarioPage,
         IonRating,
         LoginPage,
-        PopoverValidacion
     ],
     imports: [
         BrowserModule,
@@ -58,8 +54,6 @@ import {LoginPage} from "../pages/login/login";
         RecomendacionesPage,
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
-        AddComentarioPage,
-        PopoverValidacion,
         LoginPage
     ],
     providers: [
