@@ -1,14 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
-import {
-    FormBuilder,
-    FormGroup,
-    Validators,
-    AbstractControl, FormControl
-} from '@angular/forms';
+import {NavController} from 'ionic-angular';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {LoginProvider} from "../../providers/login/login";
-import {ToastProvider} from "../../providers/toast/toast";
-import {Usuario} from "../../models/usuario";
 import {AppStorageProvider} from "../../providers/app-storage/app-storage";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 

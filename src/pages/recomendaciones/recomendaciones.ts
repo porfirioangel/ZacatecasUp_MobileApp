@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Recomendacion} from "../../models/recomendacion";
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
@@ -19,7 +19,7 @@ export class RecomendacionesPage {
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public loadingCtrl: LoadingController,
                 public recomendacionesProvider: RecomendacionesProvider,
-                private cdRef: ChangeDetectorRef,
+                // private cdRef: ChangeDetectorRef,
                 private devLocation: DevLocationProvider,
                 private globalVariables: GlobalVariablesProvider) {
     }

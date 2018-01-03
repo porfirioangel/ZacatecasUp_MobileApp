@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
 import {DetalleNegocio} from "../../models/detalle-negocio";
@@ -15,7 +15,6 @@ export class DetalleRecomendacionPage {
     private id_negocio: number;
     private detalleNegocio: DetalleNegocio = new DetalleNegocio();
     private distancia: string = '';
-    private descripcionKeys: string[];
     private descripcion: any = [];
     private host: string;
 
@@ -23,7 +22,7 @@ export class DetalleRecomendacionPage {
                 private recomendaciones: RecomendacionesProvider,
                 public toastProv: ToastProvider,
                 private devLocation: DevLocationProvider,
-                private cdRef: ChangeDetectorRef,
+                // private cdRef: ChangeDetectorRef,
                 private globalVariables: GlobalVariablesProvider) {
     }
 
