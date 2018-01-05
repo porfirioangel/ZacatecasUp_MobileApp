@@ -47,6 +47,7 @@ export class LoginProvider {
                 .then((response) => {
                     console.log('POST request', response.url);
                     this.globalVariables.userLogged = true;
+                    this.globalVariables.id_usuario = response.json().id_usuario;
                     resolve(response.json() as Usuario);
                 })
                 .catch((error) => {

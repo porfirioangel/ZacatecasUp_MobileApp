@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
+import {NegocioProvider} from "../../providers/negocio/negocio";
 import {DetalleNegocio} from "../../models/detalle-negocio";
 import {ToastProvider} from "../../providers/toast/toast";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
@@ -19,7 +19,7 @@ export class DetalleRecomendacionPage {
     private host: string;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-                private recomendaciones: RecomendacionesProvider,
+                private recomendaciones: NegocioProvider,
                 public toastProv: ToastProvider,
                 private devLocation: DevLocationProvider,
                 // private cdRef: ChangeDetectorRef,
@@ -71,6 +71,7 @@ export class DetalleRecomendacionPage {
 
     viewComments() {
         this.navCtrl.push(ComentariosNegocioPage, {
+            id_negocio: this.id_negocio,
             comentarios: this.detalleNegocio.comentarios
         });
     }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Recomendacion} from "../../models/recomendacion";
-import {RecomendacionesProvider} from "../../providers/recomendaciones/recomendaciones";
+import {NegocioProvider} from "../../providers/negocio/negocio";
 import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
@@ -18,7 +18,7 @@ export class RecomendacionesPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public loadingCtrl: LoadingController,
-                public recomendacionesProvider: RecomendacionesProvider,
+                public recomendacionesProvider: NegocioProvider,
                 // private cdRef: ChangeDetectorRef,
                 private devLocation: DevLocationProvider,
                 private globalVariables: GlobalVariablesProvider) {
@@ -45,7 +45,7 @@ export class RecomendacionesPage {
 
     loadRecomendaciones() {
         let loader = this.loadingCtrl.create({
-            content: 'Buscando recomendaciones'
+            content: 'Buscando negocio'
         });
 
         loader.present();

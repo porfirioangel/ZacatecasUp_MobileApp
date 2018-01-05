@@ -13,7 +13,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {CategoriasProvider} from "../providers/categorias/categorias";
 import {HttpModule} from "@angular/http";
 import {GlobalVariablesProvider} from '../providers/global-variables/global-variables';
-import {RecomendacionesProvider} from '../providers/recomendaciones/recomendaciones';
+import {NegocioProvider} from '../providers/negocio/negocio';
 import {IonRating} from '../components/ion-rating/ion-rating';
 import {Geolocation} from '@ionic-native/geolocation';
 import {ToastProvider} from '../providers/toast/toast';
@@ -62,7 +62,7 @@ import {LoginPage} from "../pages/login/login";
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         CategoriasProvider,
         GlobalVariablesProvider,
-        RecomendacionesProvider,
+        NegocioProvider,
         Geolocation,
         ToastProvider,
         DevLocationProvider,

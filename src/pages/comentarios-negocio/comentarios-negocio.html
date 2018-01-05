@@ -14,8 +14,8 @@
                     </ion-col>
 
                     <ion-col col-10>
-                        <div>
-                            <p>{{comentario.fecha}}</p>
+                        <div class="comment-data">
+                            <p class="align-right">{{comentario.fecha}}</p>
                             <p><strong>{{comentario.autor}}</strong></p>
                             <p text-wrap>{{comentario.comentario}}</p>
                         </div>
@@ -33,11 +33,14 @@
         <ion-grid>
             <ion-row *ngIf="globalVariables.userLogged">
                 <ion-col col-9>
-                    <ion-input type="text"
-                               placeholder="Escribe tu comentario"></ion-input>
+                    <ion-input type="text" autocomplete="true" spellcheck="true"
+                               placeholder="Escribe tu comentario"
+                               [(ngModel)]="comment">
+                    </ion-input>
                 </ion-col>
                 <ion-col col-3>
-                    <button ion-button block>
+                    <button ion-button block (click)="addComment(comment)"
+                            [disabled]="!comment">
                         Enviar
                     </button>
                 </ion-col>

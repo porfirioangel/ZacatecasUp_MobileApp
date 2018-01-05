@@ -10,7 +10,7 @@ import {Comentario} from "../../models/comentario";
 
 
 @Injectable()
-export class RecomendacionesProvider {
+export class NegocioProvider {
 
     constructor(public http: Http,
                 private globalVariables: GlobalVariablesProvider) {
@@ -91,24 +91,22 @@ export class RecomendacionesProvider {
         const url = this.globalVariables.host + '/agregar_comentario';
 
         const params = {
-            params: {
-                id_usuario: id_usuario,
-                id_negocio: id_negocio,
-                comentario: comentario
-            }
+            id_usuario: id_usuario,
+            id_negocio: id_negocio,
+            comentario: comentario
         };
 
-        return new Promise<Comentario>((resolve, reject) => {
-            console.log(url);
+        console.log('comentario params', params);
 
-            this.http.get(url, params)
+        return new Promise<Comentario>((resolve, reject) => {
+            this.http.post(url, params)
                 .toPromise()
                 .then((response) => {
-                    console.log('GET request', response.url);
+                    console.log('POST request', response.url);
                     resolve(response.json() as Comentario);
                 })
                 .catch((error) => {
-                    console.log('ERROR GET request', error.url);
+                    console.log('ERROR POST request', error);
                     reject(error.json());
                 });
         })
