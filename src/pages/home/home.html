@@ -46,7 +46,9 @@
             <ion-input type="text"
                        (ionInput)="onInputSearch()"
                        [(ngModel)]="searchQuery"
-                       placeholder="comida, bares, etc."></ion-input>
+                       placeholder="comida, bares, etc."
+                       autocomplete="true" spellcheck="true">
+            </ion-input>
         </ion-item>
     </ion-list>
 

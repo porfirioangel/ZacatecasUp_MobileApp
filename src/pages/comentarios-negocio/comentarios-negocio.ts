@@ -42,4 +42,8 @@ export class ComentariosNegocioPage {
                 console.log('Error al agregar comentario', error);
             })
     }
+
+    goHome() {
+        this.navCtrl.popToRoot();
+    }
 }

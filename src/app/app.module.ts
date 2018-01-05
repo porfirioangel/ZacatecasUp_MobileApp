@@ -24,6 +24,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppStorageProvider} from '../providers/app-storage/app-storage';
 import {LoginProvider} from '../providers/login/login';
 import {LoginPage} from "../pages/login/login";
+import {GoHomeButton} from "../components/go-home-button/go-home-button";
 
 
 @NgModule({
@@ -33,8 +34,9 @@ import {LoginPage} from "../pages/login/login";
         RecomendacionesPage,
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
-        IonRating,
         LoginPage,
+        IonRating,
+        GoHomeButton,
     ],
     imports: [
         BrowserModule,
