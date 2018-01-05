@@ -2,9 +2,9 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {RecomendacionesPage} from "../recomendaciones/recomendaciones";
 import {CategoriasProvider} from "../../providers/categorias/categorias";
-import {AppStorageProvider} from "../../providers/app-storage/app-storage";
 import {LoginProvider} from "../../providers/login/login";
 import {LoginPage} from "../login/login";
+import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 
 @Component({
     selector: 'page-home',
@@ -17,8 +17,8 @@ export class HomePage {
 
     constructor(public navCtrl: NavController,
                 public categoriasProvider: CategoriasProvider,
-                private appStorage: AppStorageProvider,
-                public login: LoginProvider) {
+                public login: LoginProvider,
+                private globalVariables: GlobalVariablesProvider) {
         this.login.loginWithSavedUser();
         this.loadCategorias();
     }
@@ -41,10 +41,6 @@ export class HomePage {
 
     onInputSearch() {
         this.canSearch = this.searchQuery.length > 0;
-    }
-
-    clearData() {
-        this.appStorage.deleteLoginData();
     }
 
     openLoginPage() {

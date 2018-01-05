@@ -7,8 +7,6 @@ import {Usuario} from "../../models/usuario";
 
 @Injectable()
 export class LoginProvider {
-    public userLogged: boolean = false;
-
     constructor(public http: Http,
                 private globalVariables: GlobalVariablesProvider,
                 private appStorage: AppStorageProvider) {
@@ -31,7 +29,7 @@ export class LoginProvider {
                 password = loginPasword;
                 return this.loginWithCredentials(email, password);
             }).catch(error => {
-                this.userLogged = false;
+                this.globalVariables.userLogged = false;
             });
     }
 
@@ -48,15 +46,20 @@ export class LoginProvider {
                 .toPromise()
                 .then((response) => {
                     console.log('POST request', response.url);
-                    this.userLogged = true;
+                    this.globalVariables.userLogged = true;
                     resolve(response.json() as Usuario);
                 })
                 .catch((error) => {
                     console.log('POST request error', error);
-                    this.userLogged = false;
+                    this.globalVariables.userLogged = false;
                     reject(error.json());
                 });
         });
+    }
+
+    public logout() {
+        this.appStorage.deleteLoginData();
+        this.globalVariables.resetUserData();
     }
 
 }

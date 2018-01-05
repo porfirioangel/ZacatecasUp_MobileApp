@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {Comentario} from "../../models/comentario";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {LoginPage} from "../login/login";
 
 @Component({
     selector: 'page-comentarios-negocio',
@@ -11,11 +12,18 @@ export class ComentariosNegocioPage {
     private comentarios: Comentario[];
     private host: string;
 
-    constructor(public navParams: NavParams,
+    constructor(private navCtrl: NavController,
+                public navParams: NavParams,
                 private globalVariables: GlobalVariablesProvider) {
 
         this.comentarios = this.navParams.get('comentarios');
         this.host = this.globalVariables.hostNoPort;
+    }
+
+    openLoginPage() {
+        this.navCtrl.push(LoginPage, {
+            'onUserLogged': 'myCallbackFunction'
+        });
     }
 
     onCommentAdded = (params) => {

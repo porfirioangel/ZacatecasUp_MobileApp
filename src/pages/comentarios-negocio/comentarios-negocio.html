@@ -4,7 +4,6 @@
     </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
     <ion-list>
         <div ion-item *ngFor="let comentario of comentarios">
@@ -32,7 +31,7 @@
 <ion-footer no-shadow class="footer-fixed">
     <ion-toolbar position="bottom">
         <ion-grid>
-            <ion-row>
+            <ion-row *ngIf="globalVariables.userLogged">
                 <ion-col col-9>
                     <ion-input type="text"
                                placeholder="Escribe tu comentario"></ion-input>
@@ -42,6 +41,11 @@
                         Enviar
                     </button>
                 </ion-col>
+            </ion-row>
+            <ion-row *ngIf="!globalVariables.userLogged">
+                <button ion-button block (click)="openLoginPage()">
+                    Ingresar para comentar
+                </button>
             </ion-row>
         </ion-grid>
     </ion-toolbar>
