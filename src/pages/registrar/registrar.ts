@@ -1,9 +1,8 @@
 import {Component, ElementRef} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginProvider} from "../../providers/login/login";
-import {AppStorageProvider} from "../../providers/app-storage/app-storage";
-import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {Usuario} from "../../models/usuario";
+import {RegistroUsuarioProvider} from "../../providers/registro-usuario/registro-usuario";
 
 @Component({
     selector: 'page-registrar',
@@ -59,10 +58,8 @@ export class RegistrarPage {
 
     constructor(public navCtrl: NavController,
                 private formBuilder: FormBuilder,
-                private login: LoginProvider,
-                private appStorage: AppStorageProvider,
-                private globalVariables: GlobalVariablesProvider,
-                private elementRef: ElementRef) {
+                private elementRef: ElementRef,
+                private register: RegistroUsuarioProvider) {
 
         this.initRegisterForm();
         this.registerCorrecto = true;
@@ -81,13 +78,13 @@ export class RegistrarPage {
                 Validators.compose([
                     Validators.required,
                 ])),
-            'userBirthday': new FormControl('',
+            'userBirthday': new FormControl('20/07/1996',
                 Validators.compose([
                     Validators.required,
                 ])),
             'passwords': this.formBuilder.group({
-                userPassword: ['', Validators.required],
-                userRePassword: ['', Validators.required]
+                userPassword: ['holamundo', Validators.required],
+                userRePassword: ['holamundo', Validators.required]
             }, {validator: this.areEqual})
         });
     }
@@ -179,6 +176,25 @@ export class RegistrarPage {
      * Registra al usuario con los datos del formulario.
      */
     registerUser() {
+        let usuario = new Usuario();
+        usuario.name = this.registerForm.get('userName').value;
+        usuario.email = this.registerForm.get('userEmail').value;
+        usuario.password = this.registerForm.get('passwords').get('userPassword').value;
+        usuario.tipo_usuario = 'UsuarioNormal';
+        // TODO Agregar sexo al form
+        usuario.sexo = 'H';
+        let fecha = this.registerForm.get('userBirthday').value;
+        let parts = fecha.split('/');
+        fecha = parts[2] + '-' + parts[1] + '-' + parts[0];
+        usuario.fecha_nacimiento = fecha;
 
+        this.register.registerUser(usuario)
+            .then((response) => {
+                console.log('usuario registrado');
+                this.navCtrl.pop();
+            })
+            .catch((error) => {
+                this.registerCorrecto = false;
+            });
     }
 }

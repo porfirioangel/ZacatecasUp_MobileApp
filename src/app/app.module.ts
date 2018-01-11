@@ -26,6 +26,7 @@ import {LoginProvider} from '../providers/login/login';
 import {LoginPage} from "../pages/login/login";
 import {GoHomeButton} from "../components/go-home-button/go-home-button";
 import {RegistrarPage} from "../pages/registrar/registrar";
+import { RegistroUsuarioProvider } from '../providers/registro-usuario/registro-usuario';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import {RegistrarPage} from "../pages/registrar/registrar";
         DevLocationProvider,
         AppStorageProvider,
         LoginProvider,
+    RegistroUsuarioProvider,
     ]
 })
 export class AppModule {
