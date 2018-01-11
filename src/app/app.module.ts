@@ -25,6 +25,7 @@ import {AppStorageProvider} from '../providers/app-storage/app-storage';
 import {LoginProvider} from '../providers/login/login';
 import {LoginPage} from "../pages/login/login";
 import {GoHomeButton} from "../components/go-home-button/go-home-button";
+import {RegistrarPage} from "../pages/registrar/registrar";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {GoHomeButton} from "../components/go-home-button/go-home-button";
         RecomendacionesPage,
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
+        RegistrarPage,
         LoginPage,
         IonRating,
         GoHomeButton,
@@ -56,7 +58,8 @@ import {GoHomeButton} from "../components/go-home-button/go-home-button";
         RecomendacionesPage,
         DetalleRecomendacionPage,
         ComentariosNegocioPage,
-        LoginPage
+        LoginPage,
+        RegistrarPage,
     ],
     providers: [
         StatusBar,

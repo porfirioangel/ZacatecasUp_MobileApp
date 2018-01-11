@@ -1,0 +1,91 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Crear Cuenta</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Nombre completo:</ion-label>
+                <ion-input formControlName="userName" type="text">
+                </ion-input>
+            </ion-item>
+
+            <div class="error-messages" *ngIf="getNameErrors()">
+                <p *ngFor="let validation of getNameErrors()">
+                    {{validation.message}}
+                </p>
+            </div>
+
+            <ion-item>
+                <ion-label floating>Correo electrónico:</ion-label>
+                <ion-input formControlName="userEmail" type="text">
+                </ion-input>
+            </ion-item>
+
+            <div class="error-messages" *ngIf="getEmailErrors()">
+                <p *ngFor="let validation of getEmailErrors()">
+                    {{validation.message}}
+                </p>
+            </div>
+
+            <!-- Este es el datepicker que selecciona la fecha, no se muestra
+             el control en el formulario -->
+            <ion-item hidden>
+                <ion-label floating>Fecha de picker:</ion-label>
+                <ion-datetime id="datePicker"
+                              (ionChange)="changeDate()"
+                              [(ngModel)]="birthday"
+                              [ngModelOptions]="{standalone: true}">
+                </ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Fecha de nacimiento:</ion-label>
+                <ion-input formControlName="userBirthday" readonly
+                           (ionFocus)="clickDatePicker()"></ion-input>
+            </ion-item>
+
+            <div class="error-messages" *ngIf="getBirthdayErrors()">
+                <p *ngFor="let validation of getBirthdayErrors()">
+                    {{validation.message}}
+                </p>
+            </div>
+
+            <div formGroupName="passwords">
+                <ion-item>
+                    <ion-label floating>Contraseña:</ion-label>
+                    <ion-input formControlName="userPassword" type="password">
+                    </ion-input>
+                </ion-item>
+
+                <div class="error-messages" *ngIf="getPasswordErrors()">
+                    <p *ngFor="let validation of getPasswordErrors()">
+                        {{validation.message}}
+                    </p>
+                </div>
+
+                <ion-item>
+                    <ion-label floating>Confirmar contraseña:</ion-label>
+                    <ion-input formControlName="userRePassword" type="password">
+                    </ion-input>
+                </ion-item>
+
+                <div class="error-messages" *ngIf="getRePasswordErrors()">
+                    <p *ngFor="let validation of getRePasswordErrors()">
+                        {{validation.message}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="error-messages" *ngIf="!registerCorrecto">
+                <p>No se pudo crear la cuenta</p>
+            </div>
+        </ion-list>
+        <button ion-button block type="submit" [disabled]="!registerForm.valid">
+            Crear Cuenta
+        </button>
+    </form>
+</ion-content>

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {LoginProvider} from "../../providers/login/login";
 import {AppStorageProvider} from "../../providers/app-storage/app-storage";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {RegistrarPage} from "../registrar/registrar";
 
 @Component({
     selector: 'page-login',
@@ -97,5 +98,9 @@ export class LoginPage {
         this.globalVariables.email = email;
         this.globalVariables.password = password;
         this.globalVariables.id_usuario = id_usuario;
+    }
+
+    openRegistrarPage() {
+        this.navCtrl.push(RegistrarPage);
     }
 }
