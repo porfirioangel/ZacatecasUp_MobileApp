@@ -1,6 +1,7 @@
 import {Component, ElementRef} from '@angular/core';
 import {
-    ActionSheetController, Loading, LoadingController, NavController,
+    ActionSheetController, AlertController, Loading, LoadingController,
+    NavController,
     Platform, ToastController
 } from 'ionic-angular';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -8,7 +9,10 @@ import {Usuario} from "../../models/usuario";
 import {RegistroUsuarioProvider} from "../../providers/registro-usuario/registro-usuario";
 import {Camera} from "@ionic-native/camera";
 import {Crop} from "@ionic-native/crop";
-import {FileTransfer, FileTransferObject} from "@ionic-native/file-transfer";
+import {
+    FileTransfer, FileTransferObject,
+    FileUploadResult
+} from "@ionic-native/file-transfer";
 import {File} from '@ionic-native/file';
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 
@@ -86,7 +90,8 @@ export class RegistrarPage {
                 private transfer: FileTransfer,
                 public loadingCtrl: LoadingController,
                 public toastCtrl: ToastController,
-                private globalVariables: GlobalVariablesProvider) {
+                private globalVariables: GlobalVariablesProvider,
+                private alertCtrl: AlertController) {
 
         this.initRegisterForm();
         this.registerCorrecto = true;
@@ -219,9 +224,10 @@ export class RegistrarPage {
         usuario.fecha_nacimiento = fecha;
 
         this.register.registerUser(usuario)
-            .then((response) => {
-                console.log('usuario registrado');
-                this.uploadImage();
+            .then((usuario) => {
+                return this.uploadImage(usuario.profile_photo);
+            })
+            .then((data) => {
                 this.navCtrl.pop();
             })
             .catch((error) => {
@@ -382,7 +388,43 @@ export class RegistrarPage {
         }
     }
 
-    public uploadImage() {
+    // public uploadImage(profile_photo: string) {
+    //     // Destination URL
+    //     var url = this.globalVariables.hostUrl + '/upload.php';
+    //
+    //     // File for Upload
+    //     var targetPath = this.pathForImage(this.lastImage);
+    //
+    //     // File name only
+    //     var filename = this.lastImage;
+    //
+    //     var options = {
+    //         fileKey: "file",
+    //         fileName: profile_photo,
+    //         chunkedMode: false,
+    //         mimeType: "multipart/form-data",
+    //         params: {'fileName': filename}
+    //     };
+    //
+    //     const fileTransfer: FileTransferObject = this.transfer.create();
+    //
+    //     this.loading = this.loadingCtrl.create({
+    //         content: 'Uploading...',
+    //     });
+    //     this.loading.present();
+    //
+    //     // Use the FileTransfer to upload the image
+    //     fileTransfer.upload(targetPath, url, options).then(data => {
+    //         this.loading.dismissAll();
+    //         this.presentToast('Image succesful uploaded.');
+    //     }, err => {
+    //         this.loading.dismissAll();
+    //         this.presentToast('Error while uploading file.');
+    //         this.presentAlert('ERROR', JSON.stringify(err));
+    //     });
+    // }
+
+    public uploadImage(profile_photo: string) {
         // Destination URL
         var url = this.globalVariables.hostUrl + '/upload.php';
 
@@ -394,7 +436,7 @@ export class RegistrarPage {
 
         var options = {
             fileKey: "file",
-            fileName: filename,
+            fileName: profile_photo,
             chunkedMode: false,
             mimeType: "multipart/form-data",
             params: {'fileName': filename}
@@ -405,15 +447,30 @@ export class RegistrarPage {
         this.loading = this.loadingCtrl.create({
             content: 'Uploading...',
         });
+
         this.loading.present();
 
-        // Use the FileTransfer to upload the image
-        fileTransfer.upload(targetPath, url, options).then(data => {
-            this.loading.dismissAll();
-            this.presentToast('Image succesful uploaded.');
-        }, err => {
-            this.loading.dismissAll();
-            this.presentToast('Error while uploading file.');
+        return new Promise<FileUploadResult>((resolve, reject) => {
+            fileTransfer.upload(targetPath, url, options)
+                .then((data) => {
+                    this.loading.dismissAll();
+                    this.presentToast('Image succesful uploaded.');
+                    resolve(data);
+                })
+                .catch((error) => {
+                    this.loading.dismissAll();
+                    this.presentToast('Error while uploading file.');
+                    reject(error);
+                })
         });
+    }
+
+    presentAlert(title: string, text: string) {
+        let alert = this.alertCtrl.create({
+            title: title,
+            subTitle: text,
+            buttons: ['Dismiss']
+        });
+        alert.present();
     }
 }
