@@ -26,7 +26,13 @@ import {LoginProvider} from '../providers/login/login';
 import {LoginPage} from "../pages/login/login";
 import {GoHomeButton} from "../components/go-home-button/go-home-button";
 import {RegistrarPage} from "../pages/registrar/registrar";
-import { RegistroUsuarioProvider } from '../providers/registro-usuario/registro-usuario';
+import {RegistroUsuarioProvider} from '../providers/registro-usuario/registro-usuario';
+
+import {File} from '@ionic-native/file';
+import {FileTransfer} from '@ionic-native/file-transfer';
+import {FilePath} from '@ionic-native/file-path';
+import {Camera} from '@ionic-native/camera';
+import {Crop} from '@ionic-native/crop';
 
 
 @NgModule({
@@ -74,7 +80,12 @@ import { RegistroUsuarioProvider } from '../providers/registro-usuario/registro-
         DevLocationProvider,
         AppStorageProvider,
         LoginProvider,
-    RegistroUsuarioProvider,
+        RegistroUsuarioProvider,
+        Camera,
+        File,
+        FileTransfer,
+        FilePath,
+        Crop
     ]
 })
 export class AppModule {

@@ -13,6 +13,14 @@
                 </ion-input>
             </ion-item>
 
+            <ion-item>
+                <ion-label floating>Género</ion-label>
+                <ion-select formControlName="userGenre">
+                    <ion-option value="H">Hombre</ion-option>
+                    <ion-option value="M">Mujer</ion-option>
+                </ion-select>
+            </ion-item>
+
             <div class="error-messages" *ngIf="getNameErrors()">
                 <p *ngFor="let validation of getNameErrors()">
                     {{validation.message}}
@@ -80,11 +88,23 @@
                 </div>
             </div>
 
+            <ion-item>
+                <button ion-button block icon-left type="button"
+                        (click)="openImageActionSheet()">
+                    <ion-icon name="camera"></ion-icon>
+                    Fotografía
+                </button>
+            </ion-item>
+
+            <img src="{{pathForImage(lastImage)}}" style="width: 100%"
+                 [hidden]="lastImage === null">
+
             <div class="error-messages" *ngIf="!registerCorrecto">
                 <p>No se pudo crear la cuenta</p>
             </div>
         </ion-list>
-        <button ion-button block type="submit" [disabled]="!registerForm.valid">
+        <button ion-button block type="submit"
+                [disabled]="!registerForm.valid || lastImage === null">
             Crear Cuenta
         </button>
     </form>

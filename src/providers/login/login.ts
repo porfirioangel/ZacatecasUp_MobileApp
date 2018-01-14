@@ -34,7 +34,7 @@ export class LoginProvider {
     }
 
     public loginWithCredentials(email: string, password: string): Promise<Usuario> {
-        const url = this.globalVariables.host + '/login';
+        const url = this.globalVariables.apiUrl + '/login';
 
         const params = {
             email: email,

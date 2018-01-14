@@ -11,7 +11,7 @@ export class CategoriasProvider {
     }
 
     getCategorias(): Promise<string[]> {
-        const url = this.globalVariables.host + '/obtener_categorias';
+        const url = this.globalVariables.apiUrl + '/obtener_categorias';
 
         return new Promise<string[]>((resolve, reject) => {
             this.http.get(url)

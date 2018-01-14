@@ -26,7 +26,7 @@ export class RecomendacionesPage {
 
     ionViewDidLoad() {
         this.searchQuery = this.navParams.get('searchQuery');
-        this.host = this.globalVariables.hostNoPort;
+        this.host = this.globalVariables.hostUrl;
         this.loadRecomendaciones();
     }
 

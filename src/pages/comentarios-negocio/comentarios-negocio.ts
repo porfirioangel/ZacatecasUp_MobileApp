@@ -22,7 +22,7 @@ export class ComentariosNegocioPage {
 
         this.comentarios = this.navParams.get('comentarios');
         this.id_negocio = this.navParams.get('id_negocio');
-        this.host = this.globalVariables.hostNoPort;
+        this.host = this.globalVariables.hostUrl;
     }
 
     openLoginPage() {

@@ -3,8 +3,8 @@ import {Server} from "./server";
 
 @Injectable()
 export class GlobalVariablesProvider {
-    public host: string = Server.apiUrl;
-    public hostNoPort = Server.hostUrl;
+    public apiUrl: string = Server.apiUrl;
+    public hostUrl = Server.hostUrl;
 
     public userLogged: boolean;
     public id_usuario: number;

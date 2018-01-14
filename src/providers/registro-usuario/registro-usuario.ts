@@ -13,7 +13,7 @@ export class RegistroUsuarioProvider {
     }
 
     public registerUser(usuario: Usuario): Promise<any> {
-        const url = this.globalVariables.host + '/registrar_usuario';
+        const url = this.globalVariables.apiUrl + '/registrar_usuario';
 
         const params = {
             email: usuario.email,
@@ -42,7 +42,7 @@ export class RegistroUsuarioProvider {
     }
 
     public loginWithCredentials(email: string, password: string): Promise<Usuario> {
-        const url = this.globalVariables.host + '/login';
+        const url = this.globalVariables.apiUrl + '/login';
 
         const params = {
             email: email,

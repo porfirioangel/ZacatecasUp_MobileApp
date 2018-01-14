@@ -17,7 +17,7 @@ export class NegocioProvider {
     }
 
     getRecomendaciones(busqueda: string): Promise<Recomendacion[]> {
-        const url = this.globalVariables.host + '/buscar_recomendaciones';
+        const url = this.globalVariables.apiUrl + '/buscar_recomendaciones';
 
         console.log('busqueda', busqueda);
 
@@ -41,7 +41,7 @@ export class NegocioProvider {
     }
 
     getDetalleNegocio(id_negocio: number): Promise<DetalleNegocio> {
-        const url = this.globalVariables.host + '/detalles_negocio';
+        const url = this.globalVariables.apiUrl + '/detalles_negocio';
 
         const params = {
             params: {
@@ -64,7 +64,7 @@ export class NegocioProvider {
 
     calificarNegocio(id_usuario: number, id_negocio: number,
                      calificacion: number): Promise<Calificacion> {
-        const url = this.globalVariables.host + '/calificar_negocio';
+        const url = this.globalVariables.apiUrl + '/calificar_negocio';
 
         const params = {
             id_usuario: id_usuario,
@@ -88,11 +88,11 @@ export class NegocioProvider {
 
     comentarNegocio(id_usuario: number, id_negocio: number,
                     comentario: string): Promise<Comentario> {
-        const url = this.globalVariables.host + '/agregar_comentario';
+        const url = this.globalVariables.apiUrl + '/agregar_comentario';
 
         const params = {
-            id_usuario: id_usuario,
-            id_negocio: id_negocio,
+            usuario_id: id_usuario,
+            negocio_id: id_negocio,
             comentario: comentario
         };
 

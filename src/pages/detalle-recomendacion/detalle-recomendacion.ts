@@ -29,7 +29,7 @@ export class DetalleRecomendacionPage {
     ionViewDidLoad() {
         this.id_negocio = this.navParams.get('id_negocio');
         console.log('Cargar negocio', this.id_negocio);
-        this.host = this.globalVariables.hostNoPort;
+        this.host = this.globalVariables.hostUrl;
         this.getDetalleRecomendacion();
     }
 
