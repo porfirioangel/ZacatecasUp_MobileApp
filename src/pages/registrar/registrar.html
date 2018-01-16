@@ -9,7 +9,9 @@
         <ion-list>
             <ion-item>
                 <ion-label floating>Nombre completo:</ion-label>
-                <ion-input formControlName="userName" type="text">
+                <ion-input formControlName="userName" type="text"
+                           autocapitalize=words autocomplete="true"
+                           spellcheck="true">
                 </ion-input>
             </ion-item>
 
@@ -29,7 +31,7 @@
 
             <ion-item>
                 <ion-label floating>Correo electrónico:</ion-label>
-                <ion-input formControlName="userEmail" type="text">
+                <ion-input formControlName="userEmail" type="email">
                 </ion-input>
             </ion-item>
 
