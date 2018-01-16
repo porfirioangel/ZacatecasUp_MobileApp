@@ -5,14 +5,34 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list>
-        <button ion-item *ngFor="let recomendacion of recomendaciones"
-                (click)="openRecomendacion(recomendacion)">
+<ion-content>
+    <!--<ion-list>-->
+        <!--<button ion-item *ngFor="let recomendacion of recomendaciones"-->
+                <!--(click)="openRecomendacion(recomendacion)">-->
+            <!--<ion-avatar item-start>-->
+                <!--<img src="{{host}}{{recomendacion.logotipo || ''}}">-->
+            <!--</ion-avatar>-->
+            <!--<h2>{{recomendacion.nombre}}</h2>-->
+            <!--<div class="rating-container">-->
+                <!--<ion-rating-->
+                    <!--[numStars]="5"-->
+                    <!--[readOnly]="true"-->
+                    <!--[value]="recomendacion.tipo_suscripcion == 'Normal' ?-->
+                    <!--recomendacion.calificacion : 5">-->
+                <!--</ion-rating>-->
+            <!--</div>-->
+            <!--<p text-wrap>{{recomendacion.descripcion_breve}}</p>-->
+            <!--<p>{{distancias.get(recomendacion)}}</p>-->
+        <!--</button>-->
+    <!--</ion-list>-->
+
+    <ion-card *ngFor="let recomendacion of recomendaciones"
+              (click)="openRecomendacion(recomendacion)">
+        <ion-card-content ion-item="">
             <ion-avatar item-start>
                 <img src="{{host}}{{recomendacion.logotipo || ''}}">
             </ion-avatar>
-            <h2>{{recomendacion.nombre}}</h2>
+            <h2><strong>{{recomendacion.nombre}}</strong></h2>
             <div class="rating-container">
                 <ion-rating
                     [numStars]="5"
@@ -23,7 +43,9 @@
             </div>
             <p text-wrap>{{recomendacion.descripcion_breve}}</p>
             <p>{{distancias.get(recomendacion)}}</p>
-        </button>
-    </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+
 
 </ion-content>
