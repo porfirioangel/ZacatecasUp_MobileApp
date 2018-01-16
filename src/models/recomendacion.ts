@@ -6,4 +6,5 @@ export class Recomendacion {
     descripcion_breve: string;
     latitud: number;
     longitud: number;
+    tipo_suscripcion: string;
 }

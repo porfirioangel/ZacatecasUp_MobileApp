@@ -17,7 +17,8 @@
                 <ion-rating
                     [numStars]="5"
                     [readOnly]="true"
-                    [value]="recomendacion.calificacion">
+                    [value]="recomendacion.tipo_suscripcion == 'Normal' ?
+                    recomendacion.calificacion : 5">
                 </ion-rating>
             </div>
             <p text-wrap>{{recomendacion.descripcion_breve}}</p>
