@@ -53,6 +53,7 @@ export class RecomendacionesPage {
         this.recomendacionesProvider.getRecomendaciones(this.searchQuery)
             .then(recomendaciones => {
                 this.recomendaciones = recomendaciones;
+                console.log('rec', this.recomendaciones);
                 this.loadDistances();
                 loader.dismiss();
             })
