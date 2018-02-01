@@ -43,6 +43,8 @@ export class NegocioProvider {
     getDetalleNegocio(id_negocio: number): Promise<DetalleNegocio> {
         const url = this.globalVariables.apiUrl + '/detalles_negocio';
 
+        console.log('id_negocio', id_negocio);
+
         const params = {
             params: {
                 id_negocio: id_negocio

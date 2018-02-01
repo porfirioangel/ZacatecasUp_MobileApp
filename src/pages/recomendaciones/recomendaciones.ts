@@ -45,7 +45,7 @@ export class RecomendacionesPage {
 
     loadRecomendaciones() {
         let loader = this.loadingCtrl.create({
-            content: 'Buscando negocio'
+            content: 'Buscando recomendaciones'
         });
 
         loader.present();
