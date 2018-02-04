@@ -1,12 +1,11 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Detalles</ion-title>
+        <ion-title>{{detalleNegocio.nombre}}</ion-title>
         <ion-buttons go-home-button end></ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <h1 class="detalle-title">{{detalleNegocio.nombre}}</h1>
     <ion-grid>
         <ion-row class="vertical-align-content">
             <ion-col col-4>
@@ -14,7 +13,7 @@
             </ion-col>
 
             <ion-col col-8>
-                <div>
+                <div class="full-width">
                     <ion-rating
                         [numStars]="5"
                         [readOnly]="false"
