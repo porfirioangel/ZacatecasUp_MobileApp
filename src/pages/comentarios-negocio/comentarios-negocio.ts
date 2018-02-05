@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Comentario} from "../../models/comentario";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 import {LoginPage} from "../login/login";
@@ -14,15 +14,24 @@ export class ComentariosNegocioPage {
     private comentarios: Comentario[];
     private host: string;
     private comment: string;
+    private commentPage = 1;
 
     constructor(private navCtrl: NavController,
+                public loadingCtrl: LoadingController,
                 public navParams: NavParams,
                 private globalVariables: GlobalVariablesProvider,
                 private negocio: NegocioProvider) {
 
-        this.comentarios = this.navParams.get('comentarios');
+        // this.comentarios = this.navParams.get('comentarios');
+        // this.id_negocio = this.navParams.get('id_negocio');
+        // this.host = this.globalVariables.hostUrl;
+    }
+
+    ionViewDidLoad() {
+        this.comentarios = [];
         this.id_negocio = this.navParams.get('id_negocio');
         this.host = this.globalVariables.hostUrl;
+        this.loadComentarios(null);
     }
 
     openLoginPage() {
@@ -35,7 +44,7 @@ export class ComentariosNegocioPage {
 
         this.negocio.comentarNegocio(id_usuario, id_negocio, comment)
             .then((comentario) => {
-                this.comentarios.push(comentario);
+                this.loadComentarios(null);
                 this.comment = '';
             })
             .catch((error) => {
@@ -45,5 +54,22 @@ export class ComentariosNegocioPage {
 
     goHome() {
         this.navCtrl.popToRoot();
+    }
+
+    loadComentarios(refresher) {
+        this.negocio.getComentarios(this.id_negocio, this.commentPage)
+            .then(comentarios => {
+                this.comentarios = comentarios;
+                finishRefresher();
+            })
+            .catch(error => {
+                finishRefresher();
+            });
+
+        function finishRefresher() {
+            if (refresher != null) {
+                refresher.complete();
+            }
+        }
     }
 }

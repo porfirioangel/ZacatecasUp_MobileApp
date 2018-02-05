@@ -114,4 +114,26 @@ export class NegocioProvider {
         })
     }
 
+    getComentarios(negocioId: number, page: number): Promise<Comentario[]> {
+        const url = this.globalVariables.apiUrl + '/obtener_comentarios';
+
+        const params = {
+            params: {
+                negocio_id: negocioId,
+            }
+        };
+
+        return new Promise<Comentario[]>((resolve, reject) => {
+            this.http.get(url, params)
+                .toPromise()
+                .then((response) => {
+                    console.log('GET request', response.url);
+                    resolve(response.json() as Comentario[]);
+                })
+                .catch((error) => {
+                    reject(error.json());
+                });
+        });
+    }
+
 }

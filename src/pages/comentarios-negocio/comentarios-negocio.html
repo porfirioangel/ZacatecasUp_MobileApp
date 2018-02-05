@@ -25,6 +25,10 @@
             </ion-grid>
         </ion-item>
     </ion-list>
+
+    <ion-refresher (ionRefresh)="loadComentarios($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 </ion-content>
 
 <ion-footer no-shadow class="footer-fixed">
