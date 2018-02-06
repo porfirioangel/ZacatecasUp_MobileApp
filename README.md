@@ -9,6 +9,13 @@ Esta es la aplicación móvil de ZacatecasUp desarrollada con Ionic 3 y Angular 
 git clone https://gitlab.com/zacatecasup/ZacatecasUp_MobileApp.git
 ```
 
+**Crear archivo de configuración de servidor:**
+```
+cd src/providers/global-variables/
+cp example.server.ts server.ts
+cd ../../../
+```
+
 **Instalar dependencias automáticamente:**
 ```
 npm install

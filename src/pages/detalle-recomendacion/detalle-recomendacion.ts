@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {AlertController, NavController, NavParams} from 'ionic-angular';
 import {NegocioProvider} from "../../providers/negocio/negocio";
 import {DetalleNegocio} from "../../models/detalle-negocio";
 import {ToastProvider} from "../../providers/toast/toast";
 import {DevLocationProvider} from "../../providers/dev-location/dev-location";
 import {ComentariosNegocioPage} from "../comentarios-negocio/comentarios-negocio";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {LoginPage} from "../login/login";
 
 @Component({
     selector: 'page-detalle-recomendacion',
@@ -23,7 +24,8 @@ export class DetalleRecomendacionPage {
                 public toastProv: ToastProvider,
                 private devLocation: DevLocationProvider,
                 // private cdRef: ChangeDetectorRef,
-                private globalVariables: GlobalVariablesProvider) {
+                private globalVariables: GlobalVariablesProvider,
+                private alertCtrl: AlertController) {
     }
 
     ionViewDidLoad() {
@@ -57,16 +59,45 @@ export class DetalleRecomendacionPage {
         }
     }
 
-    starClicked() {
-        this.recomendaciones.calificarNegocio(1, this.id_negocio,
-            this.detalleNegocio.calificacion)
-            .then((calificacion) => {
-                this.detalleNegocio.calificacion = calificacion.calificacion;
-                this.toastProv.showToast('Se agregó calificación');
-            })
-            .catch(error => {
-                this.toastProv.showToast('No se agregó calificación');
-            });
+    starClicked(starClicked) {
+        if (this.globalVariables.userLogged) {
+            this.recomendaciones.calificarNegocio(
+                this.globalVariables.id_usuario,
+                this.id_negocio, starClicked)
+                .then((calificacion) => {
+                    this.detalleNegocio.calificacion = calificacion.calificacion;
+                    this.toastProv.showToast('La calificación fue agregada');
+                })
+                .catch(error => {
+                    this.toastProv.showToast('La calificación no fue agregada');
+                });
+        } else {
+            this.presentLoginNeededAlert();
+        }
+    }
+
+    presentLoginNeededAlert() {
+        let alert = this.alertCtrl.create({
+            title: 'Error al calificar',
+            message: 'Es necesario iniciar sesión para poder calificar un' +
+            ' negocio',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Iniciar sesión',
+                    handler: () => {
+                        this.navCtrl.push(LoginPage);
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
 
     viewComments() {

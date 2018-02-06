@@ -64,13 +64,15 @@ export class NegocioProvider {
         });
     }
 
-    calificarNegocio(id_usuario: number, id_negocio: number,
+    calificarNegocio(usuario_id: number, negocio_id: number,
                      calificacion: number): Promise<Calificacion> {
         const url = this.globalVariables.apiUrl + '/calificar_negocio';
 
+        console.log('calif', calificacion);
+
         const params = {
-            id_usuario: id_usuario,
-            id_negocio: id_negocio,
+            usuario_id: usuario_id,
+            negocio_id: negocio_id,
             calificacion: calificacion
         };
 
