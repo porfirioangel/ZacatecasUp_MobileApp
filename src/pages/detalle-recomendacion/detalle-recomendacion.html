@@ -45,7 +45,7 @@
 
     <h2>Galería</h2>
 
-    <ion-slides loop="true" style="height: auto;">
+    <ion-slides  style="height: auto;">
         <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
             <img src="{{host}}{{imagen || ''}}">
         </ion-slide>
