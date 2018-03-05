@@ -11,4 +11,13 @@ page-home {
         display: block;
         margin: 10px auto;
     }
+
+    ion-content.main-screen {
+        background-image: url("../assets/img/ZacatecasUpFondo.png");
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-attachment: fixed !important;
+    }
+
+
 }

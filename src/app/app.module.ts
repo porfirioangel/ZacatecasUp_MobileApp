@@ -1,6 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
-import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {
+    IonicApp, IonicErrorHandler, IonicModule,
+    Keyboard
+} from 'ionic-angular';
 import {IonicStorageModule} from '@ionic/storage';
 
 import {MyApp} from './app.component';
@@ -33,7 +36,7 @@ import {FileTransfer} from '@ionic-native/file-transfer';
 import {FilePath} from '@ionic-native/file-path';
 import {Camera} from '@ionic-native/camera';
 import {Crop} from '@ionic-native/crop';
-
+import {ScreenOrientation} from "@ionic-native/screen-orientation";
 
 @NgModule({
     declarations: [
@@ -85,7 +88,9 @@ import {Crop} from '@ionic-native/crop';
         File,
         FileTransfer,
         FilePath,
-        Crop
+        Crop,
+        ScreenOrientation,
+        Keyboard
     ]
 })
 export class AppModule {

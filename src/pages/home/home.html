@@ -35,11 +35,23 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding #content>
+<ion-content padding #content class="main-screen"
+             [style.background-size]="'auto ' + (height + 30)+ 'px'">
     <img src="assets/img/up_zacatecas.png" class="logo"/>
 
-    <br/>
-    <h1>¿Qué Necesitas?</h1>
+    <!--<img src="assets/img/ZacatecasUpFondo.png" class="background-screen-image"-->
+         <!--width="{{dimensionesFondo.width}}"-->
+         <!--height="{{dimensionesFondo.height}}"/>-->
+
+    <!--<img src="assets/img/ZacatecasUpFondo.png" class="background-screen-image"-->
+         <!--width="1920"-->
+         <!--height="{{dimensionesFondo.height}}"/>-->
+
+    <!--<h1>{{height}}</h1>-->
+
+
+
+    <h1 class="text-white">¿Qué Necesitas?</h1>
 
     <ion-list>
         <ion-item>
@@ -53,9 +65,9 @@
         </ion-item>
     </ion-list>
 
-    <button ion-button block (click)="searchByKeyword(searchQuery)"
+    <button ion-button block color="light"
+            (click)="searchByKeyword(searchQuery)"
             [disabled]="!searchQuery">
         Buscar
     </button>
-
 </ion-content>
