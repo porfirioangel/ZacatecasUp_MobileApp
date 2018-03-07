@@ -6,6 +6,7 @@ import {LoginProvider} from "../../providers/login/login";
 import {LoginPage} from "../login/login";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import {EventosPage} from "../eventos/eventos";
 
 
 @Component({
@@ -104,5 +105,12 @@ export class HomePage {
         this.navCtrl.push(LoginPage, {
             'onUserLogged': 'myCallbackFunction'
         });
+    }
+
+    /**
+     * Abre la página de eventos
+     */
+    openEventosPage() {
+        this.navCtrl.push(EventosPage);
     }
 }

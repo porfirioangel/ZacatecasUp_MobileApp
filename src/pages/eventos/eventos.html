@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Eventos</ion-title>
+        <ion-buttons go-home-button end></ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let evento of eventos" (click)="openEvento(evento)">
+        <ion-card-content ion-item="">
+            <img src="{{host}}{{evento.url_flyer|| ''}}">
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="eventos == 0">
+        <ion-card-content ion-item="">
+            <h2 text-wrap>No se encontraron eventos</h2>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

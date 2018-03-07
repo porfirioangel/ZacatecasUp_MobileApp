@@ -37,6 +37,8 @@ import {FilePath} from '@ionic-native/file-path';
 import {Camera} from '@ionic-native/camera';
 import {Crop} from '@ionic-native/crop';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
+import {EventosPage} from "../pages/eventos/eventos";
+import {EventoProvider} from '../providers/evento/evento';
 
 @NgModule({
     declarations: [
@@ -47,6 +49,7 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
         ComentariosNegocioPage,
         RegistrarPage,
         LoginPage,
+        EventosPage,
         IonRating,
         GoHomeButton,
     ],
@@ -70,6 +73,7 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
         ComentariosNegocioPage,
         LoginPage,
         RegistrarPage,
+        EventosPage,
     ],
     providers: [
         StatusBar,
@@ -90,7 +94,8 @@ import {ScreenOrientation} from "@ionic-native/screen-orientation";
         FilePath,
         Crop,
         ScreenOrientation,
-        Keyboard
+        Keyboard,
+        EventoProvider
     ]
 })
 export class AppModule {

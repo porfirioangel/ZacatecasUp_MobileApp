@@ -22,6 +22,10 @@
                 <ion-icon name="send"></ion-icon>
                 {{c}}
             </button>
+            <button menuClose ion-item (click)="openEventosPage()">
+                <ion-icon name="send"></ion-icon>
+                Próximos Eventos
+            </button>
         </ion-list>
     </ion-content>
 </ion-menu>
@@ -38,18 +42,6 @@
 <ion-content padding #content class="main-screen"
              [style.background-size]="'auto ' + (height + 30)+ 'px'">
     <img src="assets/img/up_zacatecas.png" class="logo"/>
-
-    <!--<img src="assets/img/ZacatecasUpFondo.png" class="background-screen-image"-->
-         <!--width="{{dimensionesFondo.width}}"-->
-         <!--height="{{dimensionesFondo.height}}"/>-->
-
-    <!--<img src="assets/img/ZacatecasUpFondo.png" class="background-screen-image"-->
-         <!--width="1920"-->
-         <!--height="{{dimensionesFondo.height}}"/>-->
-
-    <!--<h1>{{height}}</h1>-->
-
-
 
     <h1 class="text-white">¿Qué Necesitas?</h1>
 
