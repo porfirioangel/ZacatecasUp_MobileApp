@@ -12,6 +12,7 @@
         <ion-label>Tipo de evento</ion-label>
         <ion-select [(ngModel)]="tipoEvento"
                     (ionChange)="tipoEventoSelected($event)">
+            <ion-option value="Todos">Todos</ion-option>
             <ion-option *ngFor="let categoria of categorias"
                         value="{{categoria}}">{{categoria}}
             </ion-option>

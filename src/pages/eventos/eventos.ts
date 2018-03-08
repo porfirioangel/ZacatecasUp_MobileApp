@@ -77,8 +77,12 @@ export class EventosPage {
      * seleccionado en la lista
      */
     tipoEventoSelected(tipoEvento: any) {
-        this.eventos = this.eventosWithoutFilter.filter(
-            evento => evento.categoria == tipoEvento);
+        if (tipoEvento == 'Todos') {
+            this.eventos = this.eventosWithoutFilter;
+        } else {
+            this.eventos = this.eventosWithoutFilter.filter(
+                evento => evento.categoria == tipoEvento);
+        }
     }
 
 }
