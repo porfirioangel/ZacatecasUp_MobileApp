@@ -3,6 +3,7 @@ import {LoadingController, NavController, NavParams} from 'ionic-angular';
 import {EventoProvider} from "../../providers/evento/evento";
 import {Evento} from "../../models/evento";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {CategoriaEventoProvider} from "../../providers/categoria-evento/categoria-evento";
 
 /**
  * Generated class for the EventosPage page.
@@ -17,19 +18,28 @@ import {GlobalVariablesProvider} from "../../providers/global-variables/global-v
 export class EventosPage {
     private host: string;
     private eventos: Array<Evento>;
+    private categorias: Array<string>;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 private eventoProvider: EventoProvider,
                 private loadingCtrl: LoadingController,
-                private globalVariables: GlobalVariablesProvider) {
+                private globalVariables: GlobalVariablesProvider,
+                private categoriasEvento: CategoriaEventoProvider) {
     }
 
+    /**
+     * Callback que se ejecuta cuando la vista se ha cargado
+     */
     ionViewDidLoad() {
         this.host = this.globalVariables.hostUrl;
         this.loadEventos();
+        this.loadCategorias();
     }
 
+    /**
+     * Consulta la lista de eventos
+     */
     loadEventos() {
         let loader = this.loadingCtrl.create({
             content: 'Buscando eventos'
@@ -44,6 +54,19 @@ export class EventosPage {
             })
             .catch(error => {
                 loader.dismiss();
+            });
+    }
+
+    /**
+     * Consulta la lista de categorías
+     */
+    loadCategorias() {
+        this.categoriasEvento.getCategorias()
+            .then(categorias => {
+                this.categorias = categorias;
+            })
+            .catch(error => {
+
             });
     }
 

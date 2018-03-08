@@ -6,9 +6,45 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let evento of eventos" (click)="openEvento(evento)">
+    <br>
+
+    <ion-item>
+        <ion-label>Tipo de evento</ion-label>
+        <ion-select [(ngModel)]="tipoEvento">
+            <ion-option *ngFor="let categoria of categorias"
+                        value="{{categoria}}">{{categoria}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-card *ngFor="let evento of eventos">
         <ion-card-content ion-item="">
             <img src="{{host}}{{evento.url_flyer|| ''}}">
+
+            <br/>
+
+            <div class="event-details">
+                <p text-wrap>
+                    <strong>Fecha:</strong> {{evento.fecha_inicio}}
+                </p>
+
+                <p text-wrap>
+                    <strong>Costo:</strong> {{evento.costo}}
+                </p>
+
+                <p text-wrap>
+                    <strong>Categoria:</strong> {{evento.categoria}}
+                </p>
+
+                <p text-wrap>
+                    <a ion-button icon-only clear color="dark"
+                       href="{{'https://www.google.com/maps/search/' +
+                    '?api=1&query=' + evento.latitud + ',' +
+                    evento.longitud}}">
+                        <ion-icon name="map"></ion-icon>
+                    </a>
+                </p>
+            </div>
         </ion-card-content>
     </ion-card>
 

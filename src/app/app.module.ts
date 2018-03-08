@@ -39,6 +39,7 @@ import {Crop} from '@ionic-native/crop';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {EventosPage} from "../pages/eventos/eventos";
 import {EventoProvider} from '../providers/evento/evento';
+import { CategoriaEventoProvider } from '../providers/categoria-evento/categoria-evento';
 
 @NgModule({
     declarations: [
@@ -95,7 +96,8 @@ import {EventoProvider} from '../providers/evento/evento';
         Crop,
         ScreenOrientation,
         Keyboard,
-        EventoProvider
+        EventoProvider,
+    CategoriaEventoProvider
     ]
 })
 export class AppModule {

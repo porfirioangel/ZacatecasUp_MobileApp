@@ -8,5 +8,5 @@ export class Evento {
     public longitud: number;
     public costo: string;
     public url_flyer: string;
-    public categoria_evento_id: number;
+    public categoria: string;
 }
