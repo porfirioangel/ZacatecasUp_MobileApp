@@ -18,6 +18,7 @@ import {CategoriaEventoProvider} from "../../providers/categoria-evento/categori
 export class EventosPage {
     private host: string;
     private eventos: Array<Evento>;
+    private eventosWithoutFilter: Array<Evento>;
     private categorias: Array<string>;
 
     constructor(public navCtrl: NavController,
@@ -50,6 +51,7 @@ export class EventosPage {
         this.eventoProvider.getEventos()
             .then(eventos => {
                 this.eventos = eventos;
+                this.eventosWithoutFilter = eventos;
                 loader.dismiss();
             })
             .catch(error => {
@@ -68,6 +70,15 @@ export class EventosPage {
             .catch(error => {
 
             });
+    }
+
+    /**
+     * Filtra los eventos mostrados dependiendo del tipo de evento
+     * seleccionado en la lista
+     */
+    tipoEventoSelected(tipoEvento: any) {
+        this.eventos = this.eventosWithoutFilter.filter(
+            evento => evento.categoria == tipoEvento);
     }
 
 }
