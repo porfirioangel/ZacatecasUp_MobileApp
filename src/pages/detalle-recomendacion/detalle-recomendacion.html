@@ -25,15 +25,6 @@
                 (clicked)="starClicked($event)">>
             </ion-rating>
 
-            <p>{{distancia}}</p>
-
-            <a ion-button icon-only clear color="dark"
-               href="{{'https://www.google.com/maps/search/' +
-                    '?api=1&query=' + detalleNegocio.latitud + ',' +
-                    detalleNegocio.longitud}}">
-                <ion-icon name="map"></ion-icon>
-            </a>
-
             <a ion-button icon-only clear color="dark"
                href="{{detalleNegocio.sitio_web}}">
                 <ion-icon name="globe"></ion-icon>
@@ -42,6 +33,14 @@
             <a ion-button icon-only clear color="dark"
                href="{{detalleNegocio.facebook}}">
                 <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+
+            <a ion-button icon-only clear color="dark" icon-start=""
+               href="{{'https://www.google.com/maps/search/' +
+                    '?api=1&query=' + detalleNegocio.latitud + ',' +
+                    detalleNegocio.longitud}}">
+                <ion-icon name="map"></ion-icon>
+                &nbsp;{{distancia}}
             </a>
 
         </ion-card-header>

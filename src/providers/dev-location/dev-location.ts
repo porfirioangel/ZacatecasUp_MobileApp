@@ -15,10 +15,15 @@ export class DevLocationProvider {
                 .then((resp) => {
                     let position = new Position(resp.coords.latitude,
                         resp.coords.longitude);
+
+                    console.log('location: ' + position.latitude + ',' +
+                        position.longitude);
+
                     resolve(position as Position);
-                }).catch((error) => {
-                console.log('Error getting location', error);
-            });
+                })
+                .catch((error) => {
+                    console.log('Error getting location', error);
+                });
         });
     }
 
