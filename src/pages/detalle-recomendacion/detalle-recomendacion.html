@@ -14,6 +14,10 @@
                 <img src="{{host}}{{detalleNegocio.logotipo || ''}}">
             </ion-avatar>
 
+            <h1>{{detalleNegocio.nombre}}</h1>
+
+            <hr>
+
             <ion-rating
                 [numStars]="5"
                 [readOnly]="false"
@@ -21,23 +25,25 @@
                 (clicked)="starClicked($event)">>
             </ion-rating>
 
-            <p>{{detalleNegocio.categoria}}</p>
             <p>{{distancia}}</p>
-            <p>{{detalleNegocio.sitio_web}}</p>
 
-            <!--<h1 text-wrap>{{negocio.nombre}}</h1>-->
+            <a ion-button icon-only clear color="dark"
+               href="{{'https://www.google.com/maps/search/' +
+                    '?api=1&query=' + detalleNegocio.latitud + ',' +
+                    detalleNegocio.longitud}}">
+                <ion-icon name="map"></ion-icon>
+            </a>
 
-            <!--<a ion-button icon-only clear color="dark"-->
-            <!--href="{{'https://www.google.com/maps/search/' +-->
-            <!--'?api=1&query=' + negocio.latitud + ',' +-->
-            <!--negocio.longitud}}">-->
-            <!--<ion-icon name="map"></ion-icon>-->
-            <!--</a>-->
+            <a ion-button icon-only clear color="dark"
+               href="{{detalleNegocio.sitio_web}}">
+                <ion-icon name="globe"></ion-icon>
+            </a>
 
-            <!--<button ion-button icon-only clear color="dark"-->
-            <!--(click)="openDetallesNegocio(negocio)">-->
-            <!--<ion-icon name="list-box"></ion-icon>-->
-            <!--</button>-->
+            <a ion-button icon-only clear color="dark"
+               href="{{detalleNegocio.facebook}}">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+
         </ion-card-header>
 
         <hr>
