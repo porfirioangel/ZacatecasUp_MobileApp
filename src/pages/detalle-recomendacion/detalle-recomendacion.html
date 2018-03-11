@@ -5,51 +5,113 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-grid>
-        <ion-row class="vertical-align-content">
-            <ion-col col-4>
+<ion-content>
+
+
+    <ion-card>
+        <ion-card-header ion-item>
+            <ion-avatar item-start>
                 <img src="{{host}}{{detalleNegocio.logotipo || ''}}">
-            </ion-col>
+            </ion-avatar>
 
-            <ion-col col-8>
-                <div class="full-width">
-                    <ion-rating
-                        [numStars]="5"
-                        [readOnly]="false"
-                        [value]="detalleNegocio.calificacion"
-                        (clicked)="starClicked($event)">>
-                    </ion-rating>
+            <ion-rating
+                [numStars]="5"
+                [readOnly]="false"
+                [value]="detalleNegocio.calificacion"
+                (clicked)="starClicked($event)">>
+            </ion-rating>
 
-                    <p>{{detalleNegocio.categoria}}</p>
-                    <p>{{distancia}}</p>
-                    <p>{{detalleNegocio.sitio_web}}</p>
+            <p>{{detalleNegocio.categoria}}</p>
+            <p>{{distancia}}</p>
+            <p>{{detalleNegocio.sitio_web}}</p>
+
+            <!--<h1 text-wrap>{{negocio.nombre}}</h1>-->
+
+            <!--<a ion-button icon-only clear color="dark"-->
+            <!--href="{{'https://www.google.com/maps/search/' +-->
+            <!--'?api=1&query=' + negocio.latitud + ',' +-->
+            <!--negocio.longitud}}">-->
+            <!--<ion-icon name="map"></ion-icon>-->
+            <!--</a>-->
+
+            <!--<button ion-button icon-only clear color="dark"-->
+            <!--(click)="openDetallesNegocio(negocio)">-->
+            <!--<ion-icon name="list-box"></ion-icon>-->
+            <!--</button>-->
+        </ion-card-header>
+
+        <hr>
+
+        <ion-card-content>
+            <div *ngFor="let caracteristica of descripcion">
+                <h2>{{caracteristica.titulo}}</h2>
+                <div *ngIf="caracteristica.tipo == 'lista'">
+                    <ul>
+                        <li *ngFor="let item of caracteristica.contenido">
+                            {{item}}
+                        </li>
+                    </ul>
                 </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+                <div *ngIf="caracteristica.tipo == 'texto'">
+                    <p>{{caracteristica.contenido}}</p>
+                </div>
+            </div>
 
-    <div *ngFor="let caracteristica of descripcion">
-        <h2>{{caracteristica.titulo}}</h2>
-        <div *ngIf="caracteristica.tipo == 'lista'">
-            <ul>
-                <li *ngFor="let item of caracteristica.contenido">
-                    {{item}}
-                </li>
-            </ul>
-        </div>
-        <div *ngIf="caracteristica.tipo == 'texto'">
-            <p>{{caracteristica.contenido}}</p>
-        </div>
-    </div>
+            <h2>Galería</h2>
 
-    <h2>Galería</h2>
+            <ion-slides>
+                <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
+                    <img src="{{host}}{{imagen || ''}}">
+                </ion-slide>
+            </ion-slides>
+        </ion-card-content>
+    </ion-card>
 
-    <ion-slides  style="height: auto;">
-        <ion-slide *ngFor="let imagen of detalleNegocio.galeria">
-            <img src="{{host}}{{imagen || ''}}">
-        </ion-slide>
-    </ion-slides>
+    <!--.....................................................................-->
+    <!--<ion-grid>-->
+    <!--<ion-row class="vertical-align-content">-->
+    <!--<ion-col col-4>-->
+    <!--<img src="{{host}}{{detalleNegocio.logotipo || ''}}">-->
+    <!--</ion-col>-->
+
+    <!--<ion-col col-8>-->
+    <!--<div class="full-width">-->
+    <!--<ion-rating-->
+    <!--[numStars]="5"-->
+    <!--[readOnly]="false"-->
+    <!--[value]="detalleNegocio.calificacion"-->
+    <!--(clicked)="starClicked($event)">>-->
+    <!--</ion-rating>-->
+
+    <!--<p>{{detalleNegocio.categoria}}</p>-->
+    <!--<p>{{distancia}}</p>-->
+    <!--<p>{{detalleNegocio.sitio_web}}</p>-->
+    <!--</div>-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
+    <!--</ion-grid>-->
+
+    <!--<div *ngFor="let caracteristica of descripcion">-->
+    <!--<h2>{{caracteristica.titulo}}</h2>-->
+    <!--<div *ngIf="caracteristica.tipo == 'lista'">-->
+    <!--<ul>-->
+    <!--<li *ngFor="let item of caracteristica.contenido">-->
+    <!--{{item}}-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--<div *ngIf="caracteristica.tipo == 'texto'">-->
+    <!--<p>{{caracteristica.contenido}}</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<h2>Galería</h2>-->
+
+    <!--<ion-slides  style="height: auto;">-->
+    <!--<ion-slide *ngFor="let imagen of detalleNegocio.galeria">-->
+    <!--<img src="{{host}}{{imagen || ''}}">-->
+    <!--</ion-slide>-->
+    <!--</ion-slides>-->
 </ion-content>
 
 <ion-footer no-shadow class="footer-fixed">

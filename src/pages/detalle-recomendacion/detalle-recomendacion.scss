@@ -1,18 +1,10 @@
 page-detalle-recomendacion {
-    h1 {
-        text-align: center;
-    }
-
-    .detalle-title {
-        margin-top: 10px;
-    }
-
     ul {
         margin-top: 0;
         padding-left: 1.2em;
     }
 
-    .full-width {
-        width: 100%;
+    h2 {
+        font-weight: bold !important;
     }
 }
