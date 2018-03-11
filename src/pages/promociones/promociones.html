@@ -11,8 +11,24 @@
             <ion-avatar item-start>
                 <img src="{{host}}{{negocio.url_logo || ''}}">
             </ion-avatar>
-            <h1>{{negocio.nombre}}</h1>
+
+            <h1 text-wrap>{{negocio.nombre}}</h1>
+
+            <a ion-button icon-only clear color="dark"
+               href="{{'https://www.google.com/maps/search/' +
+                    '?api=1&query=' + negocio.latitud + ',' +
+                    negocio.longitud}}">
+                <ion-icon name="map"></ion-icon>
+            </a>
+
+            <button ion-button icon-only clear color="dark"
+                    (click)="openDetallesNegocio(negocio)">
+                <ion-icon name="list-box"></ion-icon>
+            </button>
         </ion-card-header>
+
+        <hr>
+
         <ion-card-content>
             <ion-slides loop="true">
                 <ion-slide *ngFor="let promocion of negocio.promociones">

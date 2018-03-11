@@ -5,6 +5,7 @@ import {
 } from 'ionic-angular';
 import {NegocioProvider} from "../../providers/negocio/negocio";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
+import {DetalleRecomendacionPage} from "../detalle-recomendacion/detalle-recomendacion";
 
 /**
  * Generated class for the PromocionesPage page.
@@ -52,6 +53,15 @@ export class PromocionesPage {
             .catch(error => {
                 loader.dismiss();
             });
+    }
+
+    /**
+     * Abre la pantalla de detalles del negocio seleccionado
+     */
+    openDetallesNegocio(negocio: any) {
+        this.navCtrl.push(DetalleRecomendacionPage, {
+            id_negocio: negocio.id
+        });
     }
 
 }
