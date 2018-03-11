@@ -138,4 +138,20 @@ export class NegocioProvider {
         });
     }
 
+    getPromocionesNegocios() {
+        const url = this.globalVariables.apiUrl + '/obtener_promociones';
+
+        return new Promise<Comentario[]>((resolve, reject) => {
+            this.http.get(url)
+                .toPromise()
+                .then((response) => {
+                    console.log('GET request', response.url);
+                    resolve(response.json() as Comentario[]);
+                })
+                .catch((error) => {
+                    reject(error.json());
+                });
+        });
+    }
+
 }

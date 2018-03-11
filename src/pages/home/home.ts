@@ -7,6 +7,7 @@ import {LoginPage} from "../login/login";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {EventosPage} from "../eventos/eventos";
+import {PromocionesPage} from "../promociones/promociones";
 
 
 @Component({
@@ -112,5 +113,12 @@ export class HomePage {
      */
     openEventosPage() {
         this.navCtrl.push(EventosPage);
+    }
+
+    /**
+     * Abre la página de promociones
+     */
+    openPromocionesPage() {
+        this.navCtrl.push(PromocionesPage);
     }
 }

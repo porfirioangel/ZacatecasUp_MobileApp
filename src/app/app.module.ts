@@ -39,7 +39,8 @@ import {Crop} from '@ionic-native/crop';
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {EventosPage} from "../pages/eventos/eventos";
 import {EventoProvider} from '../providers/evento/evento';
-import { CategoriaEventoProvider } from '../providers/categoria-evento/categoria-evento';
+import {CategoriaEventoProvider} from '../providers/categoria-evento/categoria-evento';
+import {PromocionesPage} from "../pages/promociones/promociones";
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { CategoriaEventoProvider } from '../providers/categoria-evento/categoria
         RegistrarPage,
         LoginPage,
         EventosPage,
+        PromocionesPage,
         IonRating,
         GoHomeButton,
     ],
@@ -75,6 +77,7 @@ import { CategoriaEventoProvider } from '../providers/categoria-evento/categoria
         LoginPage,
         RegistrarPage,
         EventosPage,
+        PromocionesPage,
     ],
     providers: [
         StatusBar,
@@ -97,7 +100,7 @@ import { CategoriaEventoProvider } from '../providers/categoria-evento/categoria
         ScreenOrientation,
         Keyboard,
         EventoProvider,
-    CategoriaEventoProvider
+        CategoriaEventoProvider
     ]
 })
 export class AppModule {

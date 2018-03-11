@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Promociones</ion-title>
+        <ion-buttons go-home-button end></ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let negocio of negociosPromos">
+        <ion-card-header ion-item>
+            <ion-avatar item-start>
+                <img src="{{host}}{{negocio.url_logo || ''}}">
+            </ion-avatar>
+            <h1>{{negocio.nombre}}</h1>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-slides loop="true">
+                <ion-slide *ngFor="let promocion of negocio.promociones">
+                    <img src="{{host}}{{promocion.url_foto || ''}}">
+                </ion-slide>
+            </ion-slides>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="negociosPromos == 0">
+        <ion-card-content ion-item="">
+            <h2 text-wrap>No se encontraron promociones</h2>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
