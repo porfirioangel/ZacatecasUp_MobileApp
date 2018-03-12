@@ -43,6 +43,16 @@
                 &nbsp;{{distancia}}
             </a>
 
+            <a ion-button icon-only clear color="dark"
+               href="{{'https://m.uber.com/ul/?action=setPickup&' +
+               'client_id=3MtSc1qTVLX-56WlaOFFa8rmuEaHUv8F&' +
+               'pickup=my_location&dropoff[formatted_address]=' +
+               detalleNegocio.nombre + '&dropoff[latitude]=' +
+               detalleNegocio.latitud + '&dropoff[longitude]='
+               + detalleNegocio.longitud}}">
+                <ion-icon name="car"></ion-icon>
+            </a>
+
         </ion-card-header>
 
         <hr>

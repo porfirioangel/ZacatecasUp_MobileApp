@@ -21,6 +21,16 @@
                 <ion-icon name="map"></ion-icon>
             </a>
 
+            <a ion-button icon-only clear color="dark"
+               href="{{'https://m.uber.com/ul/?action=setPickup&' +
+                        'client_id=3MtSc1qTVLX-56WlaOFFa8rmuEaHUv8F&' +
+                        'pickup=my_location&dropoff[formatted_address]=' +
+                        negocio.nombre + '&dropoff[latitude]=' +
+                        negocio.latitud + '&dropoff[longitude]=' +
+                        negocio.longitud}}">
+                <ion-icon name="car"></ion-icon>
+            </a>
+
             <button ion-button icon-only clear color="dark"
                     (click)="openDetallesNegocio(negocio)">
                 <ion-icon name="list-box"></ion-icon>
