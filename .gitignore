@@ -39,3 +39,5 @@ UserInterfaceState.xcuserstate
 !/resources/splash.png
 
 src/providers/global-variables/server.ts
+
+*.apk
