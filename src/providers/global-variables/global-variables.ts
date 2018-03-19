@@ -10,6 +10,7 @@ export class GlobalVariablesProvider {
     public id_usuario: number;
     public email: string;
     public password: string;
+    public token: string;
 
     constructor() {
         console.log('Hello GlobalVariablesProvider Provider');
@@ -20,6 +21,7 @@ export class GlobalVariablesProvider {
         this.email = null;
         this.password = null;
         this.userLogged = false;
+        this.token = null;
     }
 
 }

@@ -5,6 +5,7 @@ import {LoginProvider} from "../../providers/login/login";
 import {AppStorageProvider} from "../../providers/app-storage/app-storage";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
 import {RegistrarPage} from "../registrar/registrar";
+import {Usuario} from "../../models/usuario";
 
 @Component({
     selector: 'page-login',
@@ -84,20 +85,11 @@ export class LoginPage {
         this.login.loginWithCredentials(email, password)
             .then((usuario) => {
                 this.loginCorrecto = true;
-                this.saveLoginCredentials(usuario.id_usuario, email, password);
                 this.navCtrl.pop();
             })
             .catch((error) => {
                 this.loginCorrecto = false;
             });
-    }
-
-    private saveLoginCredentials(id_usuario: number, email: string,
-                                 password: string) {
-        this.appStorage.saveLoginData(email, password);
-        this.globalVariables.email = email;
-        this.globalVariables.password = password;
-        this.globalVariables.id_usuario = id_usuario;
     }
 
     openRegistrarPage() {

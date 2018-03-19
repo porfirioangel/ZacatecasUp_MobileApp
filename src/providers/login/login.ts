@@ -29,7 +29,7 @@ export class LoginProvider {
                 password = loginPasword;
                 return this.loginWithCredentials(email, password);
             }).catch(error => {
-                this.globalVariables.userLogged = false;
+                console.log(error);
             });
     }
 
@@ -46,13 +46,22 @@ export class LoginProvider {
                 .toPromise()
                 .then((response) => {
                     console.log('POST request', response.url);
+
+                    let usuario = response.json() as Usuario;
+
+                    this.appStorage.saveLoginData(usuario.token, email, password);
                     this.globalVariables.userLogged = true;
-                    this.globalVariables.id_usuario = response.json().id_usuario;
-                    resolve(response.json() as Usuario);
+                    this.globalVariables.email = usuario.email;
+                    this.globalVariables.password = usuario.password;
+                    this.globalVariables.id_usuario = usuario.id_usuario;
+                    this.globalVariables.token = usuario.token;
+
+                    resolve(usuario);
                 })
                 .catch((error) => {
                     console.log('POST request error', error);
-                    this.globalVariables.userLogged = false;
+                    this.appStorage.deleteLoginData();
+                    this.globalVariables.resetUserData();
                     reject(error.json());
                 });
         });

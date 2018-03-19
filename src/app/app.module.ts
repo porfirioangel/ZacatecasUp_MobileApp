@@ -13,7 +13,7 @@ import {DetalleRecomendacionPage} from '../pages/detalle-recomendacion/detalle-r
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {CategoriasProvider} from "../providers/categorias/categorias";
+import {CategoriaNegocioProvider} from "../providers/categorias-negocio/categorias-negocio";
 import {HttpModule} from "@angular/http";
 import {GlobalVariablesProvider} from '../providers/global-variables/global-variables';
 import {NegocioProvider} from '../providers/negocio/negocio';
@@ -83,7 +83,7 @@ import {PromocionesPage} from "../pages/promociones/promociones";
         StatusBar,
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        CategoriasProvider,
+        CategoriaNegocioProvider,
         GlobalVariablesProvider,
         NegocioProvider,
         Geolocation,

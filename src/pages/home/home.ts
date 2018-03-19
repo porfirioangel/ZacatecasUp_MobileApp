@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Keyboard, NavController, Platform} from 'ionic-angular';
 import {RecomendacionesPage} from "../recomendaciones/recomendaciones";
-import {CategoriasProvider} from "../../providers/categorias/categorias";
+import {CategoriaNegocioProvider} from "../../providers/categorias-negocio/categorias-negocio";
 import {LoginProvider} from "../../providers/login/login";
 import {LoginPage} from "../login/login";
 import {GlobalVariablesProvider} from "../../providers/global-variables/global-variables";
@@ -21,7 +21,7 @@ export class HomePage {
     height: number;
 
     constructor(public navCtrl: NavController,
-                public categoriasProvider: CategoriasProvider,
+                public categoriasProvider: CategoriaNegocioProvider,
                 public login: LoginProvider,
                 private globalVariables: GlobalVariablesProvider,
                 public keyboard: Keyboard,

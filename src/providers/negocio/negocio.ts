@@ -7,13 +7,15 @@ import {Recomendacion} from "../../models/recomendacion";
 import {DetalleNegocio} from "../../models/detalle-negocio";
 import {Calificacion} from "../../models/calificacion";
 import {Comentario} from "../../models/comentario";
+import {AppStorageProvider} from "../app-storage/app-storage";
 
 
 @Injectable()
 export class NegocioProvider {
 
     constructor(public http: Http,
-                private globalVariables: GlobalVariablesProvider) {
+                private globalVariables: GlobalVariablesProvider,
+                private appStorage: AppStorageProvider) {
     }
 
     getRecomendaciones(busqueda: string): Promise<Recomendacion[]> {
@@ -68,26 +70,33 @@ export class NegocioProvider {
                      calificacion: number): Promise<Calificacion> {
         const url = this.globalVariables.apiUrl + '/calificar_negocio';
 
-        console.log('calif', calificacion);
-
         const params = {
             usuario_id: usuario_id,
             negocio_id: negocio_id,
-            calificacion: calificacion
+            calificacion: calificacion,
+            token: ''
         };
 
-        return new Promise<Calificacion>((resolve, reject) => {
-            this.http.post(url, params)
-                .toPromise()
-                .then((response) => {
-                    console.log('POST request', response.url);
-                    resolve(response.json() as Calificacion);
-                })
-                .catch((error) => {
-                    console.log('POST request error', error);
-                    reject(error.json());
+        return this.appStorage.getLoginToken()
+            .then((loginToken) => {
+                params.token = loginToken;
+
+                let addCalificacionPromise = new Promise<Calificacion>((resolve, reject) => {
+                    this.http.post(url, params)
+                        .toPromise()
+                        .then((response) => {
+                            console.log('POST request', response.url);
+                            resolve(response.json() as Calificacion);
+                        })
+                        .catch((error) => {
+                            console.log('POST request error', error);
+                            console.log('params', params);
+                            reject(error.json());
+                        });
                 });
-        });
+
+                return addCalificacionPromise;
+            });
     }
 
     comentarNegocio(id_usuario: number, id_negocio: number,
@@ -97,23 +106,29 @@ export class NegocioProvider {
         const params = {
             usuario_id: id_usuario,
             negocio_id: id_negocio,
-            comentario: comentario
+            comentario: comentario,
+            token: ''
         };
 
-        console.log('comentario params', params);
+        return this.appStorage.getLoginToken()
+            .then((loginToken) => {
+                params.token = loginToken;
 
-        return new Promise<Comentario>((resolve, reject) => {
-            this.http.post(url, params)
-                .toPromise()
-                .then((response) => {
-                    console.log('POST request', response.url);
-                    resolve(response.json() as Comentario);
-                })
-                .catch((error) => {
-                    console.log('ERROR POST request', error);
-                    reject(error.json());
+                let addComentarioPromise = new Promise<Comentario>((resolve, reject) => {
+                    this.http.post(url, params)
+                        .toPromise()
+                        .then((response) => {
+                            console.log('POST request', response.url);
+                            resolve(response.json() as Comentario);
+                        })
+                        .catch((error) => {
+                            console.log('ERROR POST request', error);
+                            reject(error.json());
+                        });
                 });
-        })
+
+                return addComentarioPromise;
+            });
     }
 
     getComentarios(negocioId: number, page: number): Promise<Comentario[]> {
