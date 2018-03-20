@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-import 'rxjs/add/operator/map';
+import {Http, Response} from '@angular/http';
 import {GlobalVariablesProvider} from "../global-variables/global-variables";
 import {AppStorageProvider} from "../app-storage/app-storage";
 import {Usuario} from "../../models/usuario";
+import {Observable} from "rxjs/Observable";
+import "rxjs/Rx";
+import {Session} from "../../models/session";
+import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 
 @Injectable()
 export class LoginProvider {
@@ -67,9 +70,46 @@ export class LoginProvider {
         });
     }
 
+    /**
+     * Observable que consulta si el usuario se encuentra logueado
+     */
+    public checkLoginObservable(): Observable<Session> {
+        const url = this.globalVariables.apiUrl + '/check_login';
+
+        const params = {
+            token: this.globalVariables.token
+        };
+
+        console.log('token:' + this.globalVariables.token);
+
+        return this.http.post(url, params)
+            .map((response: Response) => {
+                return response.json() as Session;
+            })
+            .catch(this.handleError);
+    }
+
+    private handleError(error: Response) {
+        return Observable.throw(JSON.stringify(error.json()));
+    }
+
+    public checkLoginMonitore() {
+        IntervalObservable.create(10000)
+            .subscribe(() => {
+                this.checkLoginObservable().subscribe(
+                    data => {
+                        console.log('CheckSession DATA', data);
+                        this.globalVariables.userLogged = data.usuario_id != null;
+                    },
+                    error => {
+                        console.log('CheckSession ERROR', error);
+                    }
+                );
+            });
+    }
+
     public logout() {
         this.appStorage.deleteLoginData();
         this.globalVariables.resetUserData();
     }
-
 }

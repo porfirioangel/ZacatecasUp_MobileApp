@@ -40,6 +40,22 @@ export class AppStorageProvider {
         });
     }
 
+    getLoginTokenObserver() {
+        return new Promise<string>((resolve, reject) => {
+            this.storage.get('token')
+                .then((result) => {
+                    if (result == null) {
+                        reject('No hay token guardado');
+                    } else {
+                        resolve(result as string);
+                    }
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    }
+
     getLoginToken() {
         return new Promise<string>((resolve, reject) => {
             this.storage.get('token')

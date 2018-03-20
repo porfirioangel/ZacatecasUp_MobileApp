@@ -8,6 +8,7 @@ import {GlobalVariablesProvider} from "../../providers/global-variables/global-v
 import {ScreenOrientation} from "@ionic-native/screen-orientation";
 import {EventosPage} from "../eventos/eventos";
 import {PromocionesPage} from "../promociones/promociones";
+import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 
 
 @Component({
@@ -27,9 +28,16 @@ export class HomePage {
                 public keyboard: Keyboard,
                 private platform: Platform,
                 private screenOrientation: ScreenOrientation) {
-        this.login.loginWithSavedUser();
+    }
+
+    ionViewDidLoad() {
         this.loadCategorias();
         this.listenScreenOrientationChanges();
+
+        this.login.loginWithSavedUser()
+            .then((usuario) => {
+                this.login.checkLoginMonitore();
+            });
     }
 
     /**
