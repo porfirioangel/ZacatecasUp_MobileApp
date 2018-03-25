@@ -41,12 +41,12 @@ export class LoginPage {
                 private globalVariables: GlobalVariablesProvider) {
 
         this.loginForm = this.formBuilder.group({
-            'userEmail': new FormControl('porfirioads@gmail.com',
+            'userEmail': new FormControl('',
                 Validators.compose([
                     Validators.required,
                     Validators.email
                 ])),
-            'userPassword': new FormControl('holamundo',
+            'userPassword': new FormControl('',
                 Validators.compose([
                     Validators.required,
                     Validators.minLength(6)

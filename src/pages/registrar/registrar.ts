@@ -102,25 +102,25 @@ export class RegistrarPage {
      */
     initRegisterForm() {
         this.registerForm = this.formBuilder.group({
-            'userName': new FormControl('Porfirio Ángel Díaz Sánchez',
+            'userName': new FormControl('',
                 Validators.compose([
                     Validators.required
                 ])),
-            'userEmail': new FormControl('porfirioads@gmail.com',
+            'userEmail': new FormControl('',
                 Validators.compose([
                     Validators.required,
                 ])),
-            'userGenre': new FormControl('M',
+            'userGenre': new FormControl('',
                 Validators.compose([
                     Validators.required,
                 ])),
-            'userBirthday': new FormControl('20/07/1996',
+            'userBirthday': new FormControl('',
                 Validators.compose([
                     Validators.required,
                 ])),
             'passwords': this.formBuilder.group({
-                userPassword: ['holamundo', Validators.required],
-                userRePassword: ['holamundo', Validators.required]
+                userPassword: ['', Validators.required],
+                userRePassword: ['', Validators.required]
             }, {validator: this.areEqual})
         });
     }
@@ -387,42 +387,6 @@ export class RegistrarPage {
             return cordova.file.dataDirectory + img;
         }
     }
-
-    // public uploadImage(profile_photo: string) {
-    //     // Destination URL
-    //     var url = this.globalVariables.hostUrl + '/upload.php';
-    //
-    //     // File for Upload
-    //     var targetPath = this.pathForImage(this.lastImage);
-    //
-    //     // File name only
-    //     var filename = this.lastImage;
-    //
-    //     var options = {
-    //         fileKey: "file",
-    //         fileName: profile_photo,
-    //         chunkedMode: false,
-    //         mimeType: "multipart/form-data",
-    //         params: {'fileName': filename}
-    //     };
-    //
-    //     const fileTransfer: FileTransferObject = this.transfer.create();
-    //
-    //     this.loading = this.loadingCtrl.create({
-    //         content: 'Uploading...',
-    //     });
-    //     this.loading.present();
-    //
-    //     // Use the FileTransfer to upload the image
-    //     fileTransfer.upload(targetPath, url, options).then(data => {
-    //         this.loading.dismissAll();
-    //         this.presentToast('Image succesful uploaded.');
-    //     }, err => {
-    //         this.loading.dismissAll();
-    //         this.presentToast('Error while uploading file.');
-    //         this.presentAlert('ERROR', JSON.stringify(err));
-    //     });
-    // }
 
     public uploadImage(profile_photo: string) {
         // Destination URL
